@@ -15,7 +15,7 @@ import java.util.List;
 public class MainController {
     @Resource
     private UserDao userDao;
-    @RequestMapping(value = "/")
+    @RequestMapping(value ="/")
     public String index(){
         System.out.println(userDao.addUser());
         return "MainView/index";
