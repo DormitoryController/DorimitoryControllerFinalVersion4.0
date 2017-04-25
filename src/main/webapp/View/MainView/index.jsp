@@ -10,104 +10,102 @@
 
     <title>Insert title here</title>
 </head>
+<script>
+    $(document).ready(function(){
+        $("#pane1").click(function(){
+            $("#div1").load("http://localhost:8080/test")
+        });
+    });
+    function repositoryControl() {
+        $("#repositoryControl").load("http://localhost:8080/repositoryControl")
+    }
+</script>
+</head>
+<style>body {
+   background-color: #d9edf7;
+}
+</style>
 <body>
 <div class="container">
     <div class="row clearfix">
-        <div class="col-md-2 column">
-            <ul class="nav nav-tabs">
-                <li class="active">
-                    <a href="#">首页</a>
-                </li>
-                <li>
-                    <a href="#">简介</a>
-                </li>
-                <li class="disabled">
-                    <a href="#">信息</a>
-                </li>
-                <li class="dropdown pull-right">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">下拉<strong class="caret"></strong></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="#">操作</a>
-                        </li>
-                        <li>
-                            <a href="#">设置栏目</a>
-                        </li>
-                        <li>
-                            <a href="#">更多设置</a>
-                        </li>
-                        <li class="divider">
-                        </li>
-                        <li>
-                            <a href="#">分割线</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-6 column">
-            <ul class="pagination">
-                <li>
-                    <a href="#">Prev</a>
-                </li>
-                <li>
-                    <a href="#">1</a>
-                </li>
-                <li>
-                    <a href="#">2</a>
-                </li>
-                <li>
-                    <a href="#">3</a>
-                </li>
-                <li>
-                    <a href="#">4</a>
-                </li>
-                <li>
-                    <a href="#">5</a>
-                </li>
-                <li>
-                    <a href="#">Next</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-4 column">
-            <ul class="nav nav-pills">
-                <li class="active">
-                    <a href="#"> <span class="badge pull-right">42</span> Home</a>
-                </li>
-                <li>
-                    <a href="#"> <span class="badge pull-right">16</span> More</a>
-                </li>
-            </ul>
+        <div class="col-md-12 column">
+            <div class="carousel slide" id="carousel-883714">
+                <ol class="carousel-indicators">
+                    <li class="active" data-slide-to="0" data-target="#carousel-883714">
+                    </li>
+                    <li data-slide-to="1" data-target="#carousel-883714">
+                    </li>
+                    <li data-slide-to="2" data-target="#carousel-883714">
+                    </li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img alt="" src="/CSS/MainCss/Image/xiaohui.jpg" />
+                        <div class="carousel-caption">
+                            <h4>
+                                First Thumbnail label
+                            </h4>
+                            <p>
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img alt="" src="/CSS/MainCss/Image/xiaohui.jpg" />
+                        <div class="carousel-caption">
+                            <h4>
+                                Second Thumbnail label
+                            </h4>
+                            <p>
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img alt="" src="/CSS/MainCss/Image/xiaohui.jpg" />
+                        <div class="carousel-caption">
+                            <h4>
+                                Third Thumbnail label
+                            </h4>
+                            <p>
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                        </div>
+                    </div>
+                </div> <a class="left carousel-control" href="#carousel-883714" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-883714" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
         </div>
     </div>
     <div class="row clearfix">
-        <div class="col-md-8 column">
-            <ul class="pagination">
-                <li>
-                    <a href="#">Prev</a>
-                </li>
-                <li>
-                    <a href="#">1</a>
-                </li>
-                <li>
-                    <a href="#">2</a>
-                </li>
-                <li>
-                    <a href="#">3</a>
-                </li>
-                <li>
-                    <a href="#">4</a>
-                </li>
-                <li>
-                    <a href="#">5</a>
-                </li>
-                <li>
-                    <a href="#">Next</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-4 column">
+        <div class="col-md-12 column">
+            <div class="col-md-2 column">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-195418" href="#panel-element-280715">仓库管理</a>
+                    </div>
+                    <div id="panel-element-280715" class="panel-collapse collapse">
+                        <div class="panel-body" onclick="repositoryControl()">
+                            <a  onclick="repositoryControl()">仓库管理 </a>
+                        </div>
+                        <div class="panel-body" >
+                            仓库信息
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-195418" href="#panel-element-280714">Collapsible Group Item #2</a>
+                    </div>
+                    <div id="panel-element-280714" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            测试
+                        </div>
+                    </div>
+                </div>
+            </div>
+              <div class="col-md-6 column">
+                  <div id="repositoryControl" ></div>
+              </div>
         </div>
     </div>
 </div>

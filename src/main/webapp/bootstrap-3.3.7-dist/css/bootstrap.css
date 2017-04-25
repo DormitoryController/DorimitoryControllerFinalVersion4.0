@@ -5669,6 +5669,9 @@ button.list-group-item-danger.active:focus {
 .panel-group .panel + .panel {
   margin-top: 5px;
 }
+.panel-group .panel + .panel+.panel {
+  margin-top: 5px;
+}
 .panel-group .panel-heading {
   border-bottom: 0;
 }
@@ -5691,6 +5694,9 @@ button.list-group-item-danger.active:focus {
   border-color: #ddd;
 }
 .panel-default > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #ddd;
+}
+.panel-default > .panel-heading + .panel-collapse > .panel-body .panel-body{
   border-top-color: #ddd;
 }
 .panel-default > .panel-heading .badge {

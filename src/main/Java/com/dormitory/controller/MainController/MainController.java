@@ -31,4 +31,12 @@ public class MainController {
     public String test(){
         return "MainView/test";
     }
+    @RequestMapping(value = "/repositoryTable")
+    public String repositoryTable(){
+        return "MainView/repositoryTable";
+    }
+    @RequestMapping(value = "/repositoryControl")
+    public String repositoryControl(){
+        return "MainView/repositoryControl";
+    }
 }

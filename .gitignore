@@ -1,6 +1,4 @@
-.idea/*
-*.project
-.iml
-target/*
-*.classpath
-.patch
+/*
+!/src
+!pom.xml
+!.gitignore
