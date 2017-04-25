@@ -17,6 +17,7 @@ public class MainController {
     private UserDao userDao;
     @RequestMapping(value ="/")
     public String index(){
+        //测试
         System.out.println(userDao.addUser());
         return "MainView/index";
     }
