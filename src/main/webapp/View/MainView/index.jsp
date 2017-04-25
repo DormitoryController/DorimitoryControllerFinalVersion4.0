@@ -10,6 +10,7 @@
 
     <title>Insert title here</title>
 </head>
+<!--测试过i-->
 <script>
     $(document).ready(function(){
         $("#pane1").click(function(){
