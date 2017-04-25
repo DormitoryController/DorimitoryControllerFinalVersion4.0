@@ -5,5 +5,12 @@
 
     <mappers>
        <mapper  resource="UserDaoMapper.xml"/>
+        <mapper resource="mapping/CheckcodeMapper.xml"/>
+        <mapper resource="mapping/ItemMapper.xml"/>
+        <mapper resource="mapping/MaintenanceMapper.xml"/>
+        <mapper resource="mapping/RepairerMapper.xml"/>
+        <mapper resource="mapping/StudentMapper.xml"/>
+        <mapper resource="mapping/SuperAdminMapper.xml"/>
+        <mapper resource="mapping/SupervisorMapper.xml"/>
     </mappers>
 </configuration>

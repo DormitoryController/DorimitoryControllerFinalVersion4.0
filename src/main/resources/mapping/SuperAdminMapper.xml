@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dormitory.Dao.SuperAdminMapper">
+    <select id="selectSuperAdminById" parameterType="java.lang.Integer" resultType="com.dormitory.model.po.SuperAdmin">
+        SELECT * FROM super_administrators WHERE id=#{id}
+    </select>
+
+    <insert id="insertSuperAdmin" parameterType="com.dormitory.model.po.SuperAdmin">
+        INSERT INTO super_administrators(id,name,passwd,officenum,telephone,email)
+        VALUE (#{id},#{name},#{passwd},#{officenum},#{telephone},#{email})
+    </insert>
+
+    <delete id="deleteSuperAdmin" parameterType="java.lang.Integer">
+        DELETE FROM super_administrators WHERE id=#{id}
+    </delete>
+</mapper>

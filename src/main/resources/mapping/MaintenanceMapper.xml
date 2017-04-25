@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dormitory.Dao.MaintenanceMapper">
+
+    <select id="selectMaintenanceById" parameterType="java.lang.Integer" resultType="com.dormitory.model.po.Maintenance">
+        SELECT * FROM maintenances WHERE id=#{id}
+    </select>
+
+    <select id="selectMaintenanceByStu" parameterType="java.lang.String" resultType="com.dormitory.model.po.Maintenance">
+        SELECT * FROM maintenances,students WHERE students.name=#{stu_name} AND maintenances.sid=students.id
+    </select>
+
+    <select id="selectMaintenanceByRep" parameterType="java.lang.String" resultType="com.dormitory.model.po.Maintenance">
+        SELECT * FROM maintenances,repairers WHERE repairers.name=#{rep_name} AND maintenance.rid=repairers.id
+    </select>
+
+    <select id="selectAllMaintenance" resultType="com.dormitory.model.po.Maintenance">
+        SELECT * FROM maintenances
+    </select>
+
+    <insert id="insertReform" parameterType="com.dormitory.model.po.Maintenance">
+        INSERT INTO maintenances(student_id,repairer_type,fault_type,fault_location,fault_detail,fault_state,reqform_time)
+        VALUE (#{student_id},#{repairer_type},#{fault_type},#{fault_location},#{fault_detail},#{fault_state},#{reqform_time})
+    </insert>
+
+    <update id="updateAllocate" parameterType="com.dormitory.model.po.Maintenance">
+        UPDATE maintenances SET supervisor_id=#{supervisor_id},repairer_id=#{repairer_id},fault_state=#{fault_state}
+        WHERE id=#{id}
+    </update>
+
+    <update id="updateResponse" parameterType="com.dormitory.model.po.Maintenance">
+        UPDATE maintenances SET item_id=#{item_id},fault_analysis=#{fault_analysis},fault_state=#{fault_state},response_time=#{response_time},item_num=#{item_num}
+        WHERE id=#{id}
+    </update>
+
+    <update id="updateEstimate" parameterType="com.dormitory.model.po.Maintenance">
+        UPDATE maintenances SET etimate_rate=#{etimate_rate},estimate_detial=#{estimate_detial}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteMaintenance" parameterType="java.lang.Integer">
+        DELETE FROM maintenances WHERE id=#{id}
+    </delete>
+</mapper>

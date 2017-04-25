@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dormitory.Dao.ItemMapper">
+    <select id="selectItemByName" parameterType="java.lang.String" resultType="com.dormitory.model.po.Item">
+        SELECT * FROM items WHERE name=#{name}
+    </select>
+
+    <insert id="insertItem" parameterType="com.dormitory.model.po.Item">
+        INSERT  INTO items(id,name,repertory,price) VALUE (#{id},#{name},#{repertory},#{price})
+    </insert>
+
+    <select id="updateItem" parameterType="java.lang.Integer">
+        UPDATE items SET repertory-#{item_num} WHERE id=#{item_id}
+    </select>
+</mapper>

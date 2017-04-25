@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dormitory.Dao.SupervisorMapper">
+
+        <select id="selectSvById" parameterType="java.lang.Integer" resultType="com.dormitory.model.po.Supervisor">
+              SELECT * FROM supervisors WHERE id=#{id}
+        </select>
+
+        <select id="selectAllSv" resultType="com.dormitory.model.po.Supervisor">
+              SELECT * FROM supersivors
+        </select>
+
+        <insert id="insertSupervisor" parameterType="com.dormitory.model.po.Supervisor">
+              INSERT INTO supersivors(id,name,passwd,sex,officenum,telephone,email)
+              VALUE(#{id},#{name},#{passwd},#{sex},#{officennum},#{telephone},#{email})
+        </insert>
+
+        <delete id="deleteSupersivor" parameterType="java.lang.Integer">
+              DELETE FROM supersivors WHERE id=#{id}
+        </delete>
+
+        <update id="updateSupersivor" parameterType="com.dormitory.model.po.Supervisor">
+              UPDATE supersivors SET name=#{name},telephone=#{telephone},email=#{email},officenum=#{officenum}
+              WHERE id=#{id}
+        </update>
+
+</mapper>

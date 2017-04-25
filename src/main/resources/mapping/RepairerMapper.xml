@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dormitory.Dao.RepairerMapper">
+    <select id="selectRepByid" parameterType="java.lang.Integer" resultType="com.dormitory.model.po.Repairer">
+        SELECT * FROM repairers WHERE id=#{id}
+    </select>
+
+    <select id="selectAllRep" resultType="com.dormitory.model.po.Repairer">
+        SELECT * FROM repairers
+    </select>
+
+    <select id="selectByTypeAndState" parameterType="java.lang.String" resultType="com.dormitory.model.po.Repairer">
+        SELECT * FROM repairers WHERE repairer_type=#{repairer_type} AND state=#{state}
+    </select>
+
+    <insert id="insertReq" parameterType="com.dormitory.model.po.Repairer">
+        INSERT INTO repairers(id,name,passwd,sex,type,officenum,telephone,email,state)
+        VALUE(#{id},#{name},#{passwd},#{sex},#{type},#{officenum},#{telephone},#{email},#{state})
+    </insert>
+
+    <delete id="deleteReq" parameterType="java.lang.Integer">
+        DELETE FROM repairers WHERE id=#{id}
+    </delete>
+
+    <update id="updateReq" parameterType="com.dormitory.model.po.Repairer">
+        UPDATE repairers SET state=#{state} WHERE id=#{id}
+    </update>
+</mapper>
