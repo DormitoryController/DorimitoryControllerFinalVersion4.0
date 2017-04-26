@@ -15,10 +15,11 @@ public interface MaintenanceMapper {
     Maintenance selectMaintenanceById(@Param("id") int id);  //根据id号查询维修表
     Maintenance selectMaintenanceByStu(@Param("stu_name") String stu_name);  //根据学生名查询维修表
     Maintenance selectMaintenanceByRep(@Param("rep_name") String rep_name);  //根据维修员查询维修表
+    Maintenance selectMaintenanceByState(@Param("fault_state") String fault_state);  //根据维修状态查询维修表
     List<Maintenance> selectAllMaintenance();  //查询所有维修表
-    void insertReform(@Param("maintenance") Maintenance maintenance);  //插入保修单
-    void updateAllocate(@Param("maintenance") Maintenance maintenance);  //分派维修工作
-    void updateResponse(@Param("maintenance") Maintenance maintenance);  //插入回执单
+    void insertReform(@Param("maintenance") Maintenance maintenance);  //增加报修情况
+    void updateAllocate(@Param("maintenance") Maintenance maintenance);  //分派维修工作（状态、维修人)
+    void updateResponse(@Param("maintenance") Maintenance maintenance);  //插入回执情况
     void updateEstimate(@Param("maintenance") Maintenance maintenance);  //插入评价
     void deleteMaintenance(@Param("id") int id);  //删除维修表
 }

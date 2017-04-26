@@ -14,6 +14,10 @@
         SELECT * FROM maintenances,repairers WHERE repairers.name=#{rep_name} AND maintenance.rid=repairers.id
     </select>
 
+    <select id="selectMaintenanceByState" parameterType="java.lang.String" resultType="com.dormitory.model.po.Maintenance">
+        SELECT * FROM maintenances WHERE fault_state=#{fault_state};
+    </select>
+
     <select id="selectAllMaintenance" resultType="com.dormitory.model.po.Maintenance">
         SELECT * FROM maintenances
     </select>

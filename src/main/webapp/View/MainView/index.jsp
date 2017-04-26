@@ -17,7 +17,7 @@
         });
     });
     function repositoryControl() {
-        $("#repositoryControl").load("http://localhost:8080/repositoryControl")
+        $("#repositoryControl").load("http://localhost:8888/repositoryControl")
     }
 </script>
 </head>
