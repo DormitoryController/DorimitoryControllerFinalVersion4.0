@@ -9,7 +9,7 @@
         INSERT  INTO items(id,name,repertory,price) VALUE (#{id},#{name},#{repertory},#{price})
     </insert>
 
-    <select id="updateItem" parameterType="java.lang.Integer">
-        UPDATE items SET repertory-#{item_num} WHERE id=#{item_id}
+    <select id="updateItem" >
+        UPDATE items SET repertory=repertory-#{item_num} WHERE name=#{item_name}
     </select>
 </mapper>

@@ -7,22 +7,22 @@ public class Supervisor {
     private int id;
     private String name;
     private String passwd;
-    private Boolean sex;
+    private String sex;
     private String telephone;
-    private String eamil;
+    private String email;
     private String officenum;
 
     public Supervisor(){
 
     }
 
-    public Supervisor(int id, String name, String passwd, Boolean sex, String telephone, String eamil, String officenum) {
+    public Supervisor(int id, String name, String passwd, String sex, String telephone, String email, String officenum) {
         this.id = id;
         this.name = name;
         this.passwd = passwd;
         this.sex = sex;
         this.telephone = telephone;
-        this.eamil = eamil;
+        this.email = email;
         this.officenum = officenum;
     }
 
@@ -50,11 +50,11 @@ public class Supervisor {
         this.passwd = passwd;
     }
 
-    public Boolean getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Boolean sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -66,12 +66,12 @@ public class Supervisor {
         this.telephone = telephone;
     }
 
-    public String getEamil() {
-        return eamil;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEamil(String eamil) {
-        this.eamil = eamil;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getOfficenum() {
@@ -80,5 +80,18 @@ public class Supervisor {
 
     public void setOfficenum(String officenum) {
         this.officenum = officenum;
+    }
+
+    @Override
+    public String toString() {
+        return "Supervisor{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", passwd='" + passwd + '\'' +
+                ", sex=" + sex +
+                ", telephone='" + telephone + '\'' +
+                ", email='" + email + '\'' +
+                ", officenum='" + officenum + '\'' +
+                '}';
     }
 }

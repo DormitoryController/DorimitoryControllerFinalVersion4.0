@@ -6,21 +6,25 @@
               SELECT * FROM supervisors WHERE id=#{id}
         </select>
 
+        <select id="selectSvByName" parameterType="java.lang.String" resultType="com.dormitory.model.po.Supervisor">
+              SELECT * FROM supervisors WHERE name=#{name}
+        </select>
+
         <select id="selectAllSv" resultType="com.dormitory.model.po.Supervisor">
-              SELECT * FROM supersivors
+              SELECT * FROM supervisors
         </select>
 
         <insert id="insertSupervisor" parameterType="com.dormitory.model.po.Supervisor">
-              INSERT INTO supersivors(id,name,passwd,sex,officenum,telephone,email)
-              VALUE(#{id},#{name},#{passwd},#{sex},#{officennum},#{telephone},#{email})
+              INSERT INTO supervisors(id,name,password,sex,officenum,telephone,email)
+              VALUE(#{id},#{name},#{passwd},#{sex},#{officenum},#{telephone},#{email})
         </insert>
 
         <delete id="deleteSupersivor" parameterType="java.lang.Integer">
-              DELETE FROM supersivors WHERE id=#{id}
+              DELETE FROM supervisors WHERE id=#{id}
         </delete>
 
         <update id="updateSupersivor" parameterType="com.dormitory.model.po.Supervisor">
-              UPDATE supersivors SET name=#{name},telephone=#{telephone},email=#{email},officenum=#{officenum}
+              UPDATE supervisors SET name=#{name},password=#{passwd},telephone=#{telephone},email=#{email},officenum=#{officenum}
               WHERE id=#{id}
         </update>
 

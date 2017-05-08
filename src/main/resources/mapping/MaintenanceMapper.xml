@@ -7,11 +7,11 @@
     </select>
 
     <select id="selectMaintenanceByStu" parameterType="java.lang.String" resultType="com.dormitory.model.po.Maintenance">
-        SELECT * FROM maintenances,students WHERE students.name=#{stu_name} AND maintenances.sid=students.id
+        SELECT maintenances.* FROM maintenances,students WHERE students.name=#{stu_name} AND maintenances.student_id=students.id
     </select>
 
     <select id="selectMaintenanceByRep" parameterType="java.lang.String" resultType="com.dormitory.model.po.Maintenance">
-        SELECT * FROM maintenances,repairers WHERE repairers.name=#{rep_name} AND maintenance.rid=repairers.id
+        SELECT maintenances.* FROM maintenances,repairers WHERE repairers.name=#{rep_name} AND maintenances.repairer_id=repairers.id
     </select>
 
     <select id="selectMaintenanceByState" parameterType="java.lang.String" resultType="com.dormitory.model.po.Maintenance">
@@ -23,12 +23,12 @@
     </select>
 
     <insert id="insertReform" parameterType="com.dormitory.model.po.Maintenance">
-        INSERT INTO maintenances(student_id,repairer_type,fault_type,fault_location,fault_detail,fault_state,reqform_time)
-        VALUE (#{student_id},#{repairer_type},#{fault_type},#{fault_location},#{fault_detail},#{fault_state},#{reqform_time})
+        INSERT INTO maintenances(student_id,repairer_type,fault_type,fault_location,fault_detail,fault_state,reform_time)
+        VALUE (#{student_id},#{repairer_type},#{fault_type},#{fault_location},#{fault_detail},#{fault_state},#{reform_time})
     </insert>
 
     <update id="updateAllocate" parameterType="com.dormitory.model.po.Maintenance">
-        UPDATE maintenances SET supervisor_id=#{supervisor_id},repairer_id=#{repairer_id},fault_state=#{fault_state}
+        UPDATE maintenances SET supervisor_id=#{supervisor_id},repairer_id=#{repairer_id},repairer_type=#{repairer_type},fault_state=#{fault_state}
         WHERE id=#{id}
     </update>
 
@@ -38,7 +38,7 @@
     </update>
 
     <update id="updateEstimate" parameterType="com.dormitory.model.po.Maintenance">
-        UPDATE maintenances SET etimate_rate=#{etimate_rate},estimate_detial=#{estimate_detial}
+        UPDATE maintenances SET estimate_rate=#{estimate_rate},estimate_detial=#{estimate_detial}
         WHERE id=#{id}
     </update>
 

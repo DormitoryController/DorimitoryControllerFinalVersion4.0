@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CheckcodeMapper {
-    Checkcode selectCheckcodeById(@Param("check_id") int check_id);  //查询验证码
+    Checkcode selectCheckcodeById(@Param("id") int id);  //查询验证码
 }

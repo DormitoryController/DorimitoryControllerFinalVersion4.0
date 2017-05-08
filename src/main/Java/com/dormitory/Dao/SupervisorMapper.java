@@ -13,8 +13,9 @@ import java.util.List;
 @Repository
 public interface SupervisorMapper {
     Supervisor selectSvById(@Param("id") int id);  //根据id查询宿管信息
+    Supervisor selectSvByName(@Param("name") String name);
     List<Supervisor> selectAllSv();  //查询所有宿管
-    void insertSupervisor(@Param("supersivor") Supervisor supersiovor);  //增加宿管
+    void insertSupervisor(Supervisor supersiovor);  //增加宿管
     void deleteSupersivor(@Param("id") int id);  //删除宿管
-    void updateSupersivor(@Param("supersivor") Supervisor supersivor);  //更新宿管
+    void updateSupersivor(Supervisor supersivor);  //更新宿管
 }
