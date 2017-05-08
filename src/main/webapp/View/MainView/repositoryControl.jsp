@@ -19,7 +19,7 @@
 </head>
 <script>
     function repositoryTable() {
-        $("#div1").load("http://localhost:8888/repositoryTable")
+        $("#div1").load("http://localhost:8001/repositoryTable")
     }
 </script>
 <body>

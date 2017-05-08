@@ -14,11 +14,11 @@
 <script>
     $(document).ready(function(){
         $("#pane1").click(function(){
-            $("#div1").load("http://localhost:8080/test")
+            $("#div1").load("http://localhost:8001/test")
         });
     });
     function repositoryControl() {
-        $("#repositoryControl").load("http://localhost:8888/repositoryControl")
+        $("#repositoryControl").load("http://localhost:8001/repositoryControl")
     }
 </script>
 </head>

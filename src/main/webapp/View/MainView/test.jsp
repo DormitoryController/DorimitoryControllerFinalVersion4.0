@@ -23,7 +23,7 @@
 
     });
      function btn() {
-         $("#div1").load("http://localhost:8080/")
+         $("#div1").load("http://localhost:8001/")
      }
 </script>
 <body>
