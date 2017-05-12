@@ -18,16 +18,38 @@
     <title>Title</title>
 </head>
 <script>
-     $(document).ready(function(){
-
-
+//    $(document).ready(function(){
+//        $("button").click(function(){
+//            $.post("http://localhost:8001/user",{
+//                    name:"菜鸟教程",
+//                    url:"http://www.runoob.com"
+//                },
+//                function(data,status){
+//                    alert("数据: \n" + data.getId() + "\n状态: " + status);
+//                });
+//        });
+//    });
+$(function () {
+    $('#btn1').click(function () {
+        $.ajax({
+            type:'post',
+            url:'/MainController/user',
+            data:{param:'就是我'},
+            success: function (data) {
+                var result=eval("("+data+")");
+                var ob=result.userlist;
+               for(var i in ob)
+                   alert(ob[i].sex);
+            },
+            error: function () {
+                alert("服务器连接异常");
+            }
+        },JSON)
     });
-     function btn() {
-         $("#div1").load("http://localhost:8001/")
-     }
+});
 </script>
 <body>
-<button id="bt1" onclick="btn()">btn1</button>
-<div id="div1"/>
+<button id="btn1" >发送一个 HTTP POST 请求页面并获取返回内容</button>
+<form action="">
 </body>
 </html>

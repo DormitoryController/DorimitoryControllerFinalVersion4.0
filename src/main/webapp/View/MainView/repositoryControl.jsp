@@ -18,22 +18,25 @@
 
 </head>
 <script>
-    function repositoryTable() {
-        $("#div1").load("http://localhost:8001/repositoryTable")
+    function repositoryControlAdd() {
+        $("#div1").load("/MainController/repositoryTable")
+    }
+    function repositoryControlReduce() {
+        $("#div2").load("/MainController/repositoryTableReducing")
     }
 </script>
 <body>
 <style>body {
-    background-color: #d9edf7;
+background-color: #d9edf7;
 }
 </style>
-<div class="tabbable" id="tabs-795087">
+<div class="tabbable" >
     <ul class="nav nav-tabs">
         <li class="active">
-            <a href="#panel-453243" data-toggle="tab" id="pane1" onclick="repositoryTable()">仓库管理</a>
+            <a href="#panel-453243" data-toggle="tab"  onclick="repositoryControlAdd()">耗材提交</a>
         </li>
         <li>
-            <a href="#panel-573909" data-toggle="tab">仓库信息</a>
+            <a href="#panel-573909" data-toggle="tab"  onclick="repositoryControlReduce()">采购信息提交</a>
         </li>
     </ul>
     <div class="tab-content">
@@ -41,9 +44,7 @@
             <div id="div1"></div>
         </div>
         <div class="tab-pane" id="panel-573909">
-            <p>
-                Howdy, I'm in Section 2.
-            </p>
+            <div id="div2"></div>
         </div>
     </div>
 </div>

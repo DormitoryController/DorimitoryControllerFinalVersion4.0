@@ -22,7 +22,7 @@
 </style>
 <script>
     var index=1;
-    $(document).ready(function repositoryAdding() {
+    $(document).ready(function repositoryReducing() {
         $.ajax({
             type:'post',
             url:'/MainController/repositoryItem',
@@ -40,7 +40,7 @@
                     "<td><input type='number'style='background-color: #d9edf7'></td>" +
                     "<td onclick='addColumn()'> <a>+</a> </td>"
                 "</tr>";
-                $("#table1").append(txt2);
+                $("#table2").append(txt2);
                 index++;
             },
         },JSON)
@@ -63,7 +63,7 @@
                     "<td><input type='number'style='background-color: #d9edf7'></td>" +
                     "<td onclick='addColumn()'> <a>+</a> </td>"
                 "</tr>";
-                $("#table1").append(txt2);
+                $("#table2").append(txt2);
                 index++;
             },
         },JSON)
@@ -104,7 +104,7 @@
         </th>
     </tr>
     </thead>
-    <tbody   id="table1">
+    <tbody   id="table2">
 
 
     </tbody>
