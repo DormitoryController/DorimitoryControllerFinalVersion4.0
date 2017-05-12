@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SuperAdminMapper {
     SuperAdmin selectSuperAdminById(@Param("id") int id);  //根据id查询超管信息
-    void insertSuperAdmin(@Param("superAdmin") SuperAdmin superAdmin);  //插入超管信息
+    SuperAdmin selectSuperAdminByName(@Param("name") String name);
+    void insertSuperAdmin(SuperAdmin superAdmin);  //插入超管信息
     void deleteSuperAdmin(@Param("id") int id);  //删除超管信息
 }

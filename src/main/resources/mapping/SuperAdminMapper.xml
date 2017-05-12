@@ -5,8 +5,12 @@
         SELECT * FROM super_administrators WHERE id=#{id}
     </select>
 
+    <select id="selectSuperAdminByName" parameterType="java.lang.String" resultType="com.dormitory.model.po.SuperAdmin">
+        SELECT * FROM super_administrators WHERE name=#{name}
+    </select>
+
     <insert id="insertSuperAdmin" parameterType="com.dormitory.model.po.SuperAdmin">
-        INSERT INTO super_administrators(id,name,passwd,officenum,telephone,email)
+        INSERT INTO super_administrators(id,name,password,officenum,telephone,email)
         VALUE (#{id},#{name},#{passwd},#{officenum},#{telephone},#{email})
     </insert>
 

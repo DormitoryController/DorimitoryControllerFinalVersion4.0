@@ -4,9 +4,9 @@ package com.dormitory.model.po;
  * Created by war on 2017/4/17.
  */
 public class Student {
-    private int id;
+    private Long id;
     private String name;
-    private Boolean sex;
+    private String sex;
     private String telephone;
     private String email;
     private String flatnum;
@@ -17,7 +17,7 @@ public class Student {
 
     }
 
-    public Student(int id, String name, Boolean sex, String telephone, String email, String flatnum, String dormnum, String passwd) {
+    public Student(Long id, String name, String sex, String telephone, String email, String flatnum, String dormnum, String passwd) {
         this.id = id;
         this.name = name;
         this.sex = sex;
@@ -28,11 +28,11 @@ public class Student {
         this.passwd = passwd;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -44,11 +44,11 @@ public class Student {
         this.name = name;
     }
 
-    public Boolean getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Boolean sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 

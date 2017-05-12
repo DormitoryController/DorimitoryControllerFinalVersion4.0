@@ -5,15 +5,13 @@ package com.dormitory.model.po;
  */
 public class Checkcode {
     private int id;
-    private int check_id;
-    private int checkcode;
+    private String checkcode;
 
     public Checkcode() {
     }
 
-    public Checkcode(int id, int check_id, int checkcode) {
+    public Checkcode(int id, String checkcode) {
         this.id = id;
-        this.check_id = check_id;
         this.checkcode = checkcode;
     }
 
@@ -25,19 +23,19 @@ public class Checkcode {
         this.id = id;
     }
 
-    public int getCheck_id() {
-        return check_id;
-    }
-
-    public void setCheck_id(int check_id) {
-        this.check_id = check_id;
-    }
-
-    public int getCheckcode() {
+    public String getCheckcode() {
         return checkcode;
     }
 
-    public void setCheckcode(int checkcode) {
+    public void setCheckcode(String checkcode) {
         this.checkcode = checkcode;
+    }
+
+    @Override
+    public String toString() {
+        return "Checkcode{" +
+                "id=" + id +
+                ", checkcode='" + checkcode + '\'' +
+                '}';
     }
 }

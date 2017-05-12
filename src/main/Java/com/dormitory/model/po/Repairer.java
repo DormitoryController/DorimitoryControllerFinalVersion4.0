@@ -7,17 +7,18 @@ public class Repairer {
     private int id;
     private String name;
     private String passwd;
-    private Boolean sex;
+    private String sex;
     private String repairer_type;
     private String telephone;
     private String email;
     private String officenum;
+    private String state;
 
     public Repairer(){
 
     }
 
-    public Repairer(int id, String name, String passwd, Boolean sex, String repairer_type, String telephone, String email, String officenum) {
+    public Repairer(int id, String name, String passwd, String sex, String repairer_type, String telephone, String email, String officenum, String state) {
         this.id = id;
         this.name = name;
         this.passwd = passwd;
@@ -26,6 +27,7 @@ public class Repairer {
         this.telephone = telephone;
         this.email = email;
         this.officenum = officenum;
+        this.state=state;
     }
 
     public int getId() {
@@ -52,11 +54,11 @@ public class Repairer {
         this.passwd = passwd;
     }
 
-    public Boolean getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Boolean sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -92,6 +94,14 @@ public class Repairer {
         this.officenum = officenum;
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
     @Override
     public String toString() {
         return "Repairer{" +
@@ -103,6 +113,7 @@ public class Repairer {
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
                 ", officenum='" + officenum + '\'' +
+                ", state='" + state + '\'' +
                 '}';
     }
 }

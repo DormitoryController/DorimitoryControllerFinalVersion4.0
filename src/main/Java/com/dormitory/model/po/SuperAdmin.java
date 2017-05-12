@@ -70,4 +70,16 @@ public class SuperAdmin {
     public void setOfficenum(String officenum) {
         this.officenum = officenum;
     }
+
+    @Override
+    public String toString() {
+        return "SuperAdmin{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", passwd='" + passwd + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", email='" + email + '\'' +
+                ", officenum='" + officenum + '\'' +
+                '}';
+    }
 }

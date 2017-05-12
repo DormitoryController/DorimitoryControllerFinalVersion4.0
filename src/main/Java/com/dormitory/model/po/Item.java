@@ -9,6 +9,24 @@ public class Item {
         private int repertory;
         private String price;
 
+        public Item() {
+        }
+
+        public Item(int id, String name, int repertory, String price) {
+                this.id = id;
+                this.name = name;
+                this.repertory = repertory;
+                this.price = price;
+        }
+
+        public int getId() {
+                return id;
+        }
+
+        public void setId(int id) {
+                this.id = id;
+        }
+
         public String getName() {
                 return name;
         }
@@ -33,12 +51,13 @@ public class Item {
                 this.price = price;
         }
 
-        public int getId() {
-
-                return id;
-        }
-
-        public void setId(int id) {
-                this.id = id;
+        @Override
+        public String toString() {
+                return "Item{" +
+                        "id=" + id +
+                        ", name='" + name + '\'' +
+                        ", repertory=" + repertory +
+                        ", price='" + price + '\'' +
+                        '}';
         }
 }
