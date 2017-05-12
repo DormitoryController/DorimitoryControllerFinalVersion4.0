@@ -33,6 +33,7 @@
         <mapper resource="mapping/StudentMapper.xml"/>
         <mapper resource="mapping/SuperAdminMapper.xml"/>
         <mapper resource="mapping/SupervisorMapper.xml"/>
+        <mapper resource="mapping/ItemListMapper.xml"/>
     </mappers>
 
 </configuration>

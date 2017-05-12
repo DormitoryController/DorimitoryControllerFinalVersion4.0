@@ -6,12 +6,12 @@
         SELECT * FROM maintenances WHERE id=#{id}
     </select>
 
-    <select id="selectMaintenanceByStu" parameterType="java.lang.String" resultType="com.dormitory.model.po.Maintenance">
-        SELECT maintenances.* FROM maintenances,students WHERE students.name=#{stu_name} AND maintenances.student_id=students.id
+    <select id="selectMaintenanceByStu" parameterType="java.lang.String" resultMap="reform">
+        SELECT maintenances.*,repairers.name,repairers.telephone FROM maintenances,students,repairers WHERE students.name=#{stu_name} AND maintenances.student_id=students.id AND repairers.id=maintenances.repairer_id
     </select>
 
-    <select id="selectMaintenanceByRep" parameterType="java.lang.String" resultType="com.dormitory.model.po.Maintenance">
-        SELECT maintenances.* FROM maintenances,repairers WHERE repairers.name=#{rep_name} AND maintenances.repairer_id=repairers.id
+    <select id="selectMaintenanceByRep" parameterType="java.lang.String" resultMap="response">
+        SELECT maintenances.*,students.name,students.telephone FROM maintenances,students,repairers WHERE repairers.name=#{rep_name} AND maintenances.repairer_id=repairers.id AND students.id=maintenances.student_id
     </select>
 
     <select id="selectMaintenanceByState" parameterType="java.lang.String" resultType="com.dormitory.model.po.Maintenance">
@@ -45,4 +45,55 @@
     <delete id="deleteMaintenance" parameterType="java.lang.Integer">
         DELETE FROM maintenances WHERE id=#{id}
     </delete>
+
+    <select id="selectReform" parameterType="java.lang.String" resultMap="reform">
+        SELECT maintenances.*,repairers.name,repairers.telephone FROM maintenances,students,repairers WHERE students.name=#{stu_name} AND maintenances.student_id=students.id AND repairers.id=maintenances.repairer_id
+    </select>
+
+    <resultMap id="reform" type="com.dormitory.model.po.Maintenance">
+        <id column="id" property="id"></id>
+        <result column="student_id" property="student_id"/>
+        <result column="supervisor_id" property="supervisor_id"/>
+        <result column="repairer_id" property="repairer_id"/>
+        <result column="repairer_type" property="repairer_type"/>
+        <result column="fault_type" property="fault_type"/>
+        <result column="fault_location" property="fault_location"/>
+        <result column="fault_detail" property="fault_detail"/>
+        <result column="fault_analysis" property="fault_analysis"/>
+        <result column="fault_state" property="fault_state"/>
+        <result column="reform_time" property="reform_time"/>
+        <result column="response_time" property="response_time"/>
+        <result column="estimate_rate" property="estimate_rate"/>
+        <result column="estimate_detial" property="estimate_detial"/>
+        <collection property="repairer" ofType="com.dormitory.model.po.Repairer" >
+            <id column="id" property="id"></id>
+            <result column="name" property="name"></result>
+            <result column="telephone" property="telephone"></result>
+        </collection>
+    </resultMap>
+
+    <resultMap id="response" type="com.dormitory.model.po.Maintenance">
+        <id column="id" property="id"></id>
+        <result column="student_id" property="student_id"/>
+        <result column="supervisor_id" property="supervisor_id"/>
+        <result column="repairer_id" property="repairer_id"/>
+        <result column="repairer_type" property="repairer_type"/>
+        <result column="fault_type" property="fault_type"/>
+        <result column="fault_location" property="fault_location"/>
+        <result column="fault_detail" property="fault_detail"/>
+        <result column="fault_analysis" property="fault_analysis"/>
+        <result column="fault_state" property="fault_state"/>
+        <result column="reform_time" property="reform_time"/>
+        <result column="response_time" property="response_time"/>
+        <result column="estimate_rate" property="estimate_rate"/>
+        <result column="estimate_detial" property="estimate_detial"/>
+        <collection property="student" ofType="com.dormitory.model.po.Student" >
+            <id column="id" property="id"></id>
+            <result column="name" property="name"></result>
+            <result column="telephone" property="telephone"></result>
+        </collection>
+    </resultMap>
+
+
+
 </mapper>

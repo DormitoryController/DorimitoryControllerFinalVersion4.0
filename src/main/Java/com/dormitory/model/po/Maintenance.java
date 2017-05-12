@@ -7,32 +7,31 @@ import java.util.Date;
  */
 public class Maintenance {
     private int id;
-    private Long student_id;
-    private int supervisor_id;
-    private int repairer_id;
-    private int item_id;
+    private Long student_id;        //学生id
+    private int supervisor_id;      //宿管id
+    private int repairer_id;        //维修员id
     private String repairer_type;
-    private String fault_type;
-    private String fault_location;
-    private String fault_detail;
-    private String fault_analysis;
-    private String fault_state="待审定";
-    private Date reform_time;
-    private Date response_time;
-    private int item_num;
+    private String fault_type;       //故障类型
+    private String fault_location;   //故障位置
+    private String fault_detail;     //故障详细描述
+    private String fault_analysis;   //故障分析
+    private String fault_state="待审定";    //故障状态
+    private Date reform_time;        //报修时间
+    private Date response_time;      //维修时间
     private float estimate_rate;
     private String estimate_detial;
+    private Repairer repairer;
+    private Student student;
 
     public Maintenance() {
 
     }
 
-    public Maintenance(int id, Long student_id, int supervisor_id, int repairer_id, int item_id, String repairer_type, String fault_type, String fault_location, String fault_detail, String fault_analysis, String fault_state, Date reform_time, Date response_time, int item_num, float estimate_rate, String estimate_detial) {
+    public Maintenance(int id, Long student_id, int supervisor_id, int repairer_id, String repairer_type, String fault_type, String fault_location, String fault_detail, String fault_analysis, String fault_state, Date reform_time, Date response_time, float estimate_rate, String estimate_detial) {
         this.id = id;
         this.student_id = student_id;
         this.supervisor_id = supervisor_id;
         this.repairer_id = repairer_id;
-        this.item_id = item_id;
         this.repairer_type = repairer_type;
         this.fault_type = fault_type;
         this.fault_location = fault_location;
@@ -41,7 +40,6 @@ public class Maintenance {
         this.fault_state = fault_state;
         this.reform_time = reform_time;
         this.response_time = response_time;
-        this.item_num = item_num;
         this.estimate_rate = estimate_rate;
         this.estimate_detial = estimate_detial;
     }
@@ -76,14 +74,6 @@ public class Maintenance {
 
     public void setRepairer_id(int repairer_id) {
         this.repairer_id = repairer_id;
-    }
-
-    public int getItem_id() {
-        return item_id;
-    }
-
-    public void setItem_id(int item_id) {
-        this.item_id = item_id;
     }
 
     public String getRepairer_type() {
@@ -150,14 +140,6 @@ public class Maintenance {
         this.response_time = response_time;
     }
 
-    public int getItem_num() {
-        return item_num;
-    }
-
-    public void setItem_num(int item_num) {
-        this.item_num = item_num;
-    }
-
     public float getEstimate_rate() {
         return estimate_rate;
     }
@@ -174,6 +156,22 @@ public class Maintenance {
         this.estimate_detial = estimate_detial;
     }
 
+    public Repairer getRepairer() {
+        return repairer;
+    }
+
+    public void setRepairer(Repairer repairer) {
+        this.repairer = repairer;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
     @Override
     public String toString() {
         return "Maintenance{" +
@@ -181,7 +179,6 @@ public class Maintenance {
                 ", student_id=" + student_id +
                 ", supervisor_id=" + supervisor_id +
                 ", repairer_id=" + repairer_id +
-                ", item_id=" + item_id +
                 ", repairer_type='" + repairer_type + '\'' +
                 ", fault_type='" + fault_type + '\'' +
                 ", fault_location='" + fault_location + '\'' +
@@ -190,11 +187,10 @@ public class Maintenance {
                 ", fault_state='" + fault_state + '\'' +
                 ", reform_time=" + reform_time +
                 ", response_time=" + response_time +
-                ", item_num=" + item_num +
                 ", estimate_rate=" + estimate_rate +
                 ", estimate_detial='" + estimate_detial + '\'' +
+                ", repairer=" + repairer +
+                ", student=" + student +
                 '}';
     }
-
-
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dormitory.Dao.ItemListMapper">
+    <select id="selectAllItemList" resultType="com.dormitory.model.po.ItemList">
+        SELECT * FROM itemList
+    </select>
+
+    <insert id="insertItemList" parameterType="com.dormitory.model.po.ItemList">
+        INSERT INTO itemList(maintenance_id,item_id,item_num) VALUE (#{maintenance_id},#{item_id},#{item_num})
+    </insert>
+</mapper>
