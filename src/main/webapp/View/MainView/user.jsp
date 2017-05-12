@@ -9,97 +9,33 @@
 <html>
 <head>
     <title>Title</title>
+    <meta charset="UTF-8">
+    <link href="/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+    <script src="/bootstrap-3.3.7-dist/js/jquery-3.1.1.min.js"></script>
+
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+
+
 </head>
-<body>
-<table class="table">
-    <thead>
+<script>
+    $(document).ready()
+    {
+    }
+    function test() {
+        $.post("/MainController/user", function (data, status) {
+            var list = data.getElementsByTagName("userlist")
+            $("#table2").append(list);
+        })
+    }
+</script>
+<body >
+<table id="table" class="table1" >
     <tr>
-        <th>
-            编号
-        </th>
-        <th>
-            产品
-        </th>
-        <th>
-            交付时间
-        </th>
-        <th>
-            状态
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>
-            1
-        </td>
-        <td>
-            TB - Monthly
-        </td>
-        <td>
-            01/04/2012
-        </td>
-        <td>
-            Default
+        <td >
+            <button onclick="test()">test</button>
         </td>
     </tr>
-    <tr class="success">
-        <td>
-            1
-        </td>
-        <td>
-            TB - Monthly
-        </td>
-        <td>
-            01/04/2012
-        </td>
-        <td>
-            Approved
-        </td>
-    </tr>
-    <tr class="error">
-        <td>
-            2
-        </td>
-        <td>
-            TB - Monthly
-        </td>
-        <td>
-            02/04/2012
-        </td>
-        <td>
-            Declined
-        </td>
-    </tr>
-    <tr class="warning">
-        <td>
-            3
-        </td>
-        <td>
-            TB - Monthly
-        </td>
-        <td>
-            03/04/2012
-        </td>
-        <td>
-            Pending
-        </td>
-    </tr>
-    <tr class="info">
-        <td>
-            4
-        </td>
-        <td>
-            TB - Monthly
-        </td>
-        <td>
-            04/04/2012
-        </td>
-        <td>
-            Call in to confirm
-        </td>
-    </tr>
-    </tbody>
 </table>
+<div id="table2"></div>
 </body>
 </html>

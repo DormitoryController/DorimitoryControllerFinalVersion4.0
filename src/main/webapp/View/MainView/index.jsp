@@ -12,24 +12,30 @@
 </head>
 <!--测试过i-->
 <script>
-    $(document).ready(function(){
-        $("#pane1").click(function(){
-            $("#div1").load("http://localhost:8080/test")
-        });
-    });
+    $(document).ready(function welcome() {
+        alert("欢迎使用西安交通大学宿舍管理系统")
+    })
     function repositoryControl() {
-        $("#repositoryControl").load("http://localhost:8080/repositoryControl")
+        $("#repositoryControl").load("/MainController/repositoryControl")
+    }
+    function repositoryInfo() {
+        $("#repositoryControl").load("/MainController/repositoryInfo")
+
+    }
+    function reword() {
+        $("#repositoryControl").load("/MainController/reword")
+
     }
 </script>
 </head>
 <style>body {
-   background-color: #d9edf7;
+    background-color: #d9edf7;
 }
 </style>
 <body>
 <div class="container">
     <div class="row clearfix">
-        <div class="col-md-12 column">
+        <div class="col-md-12 column" >
             <div class="carousel slide" id="carousel-883714">
                 <ol class="carousel-indicators">
                     <li class="active" data-slide-to="0" data-target="#carousel-883714">
@@ -82,24 +88,24 @@
             <div class="col-md-2 column">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-195418" href="#panel-element-280715">仓库管理</a>
+                        <p class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-195418" >仓库管理</p>
                     </div>
-                    <div id="panel-element-280715" class="panel-collapse collapse">
+                    <div id="panel-element-280715" class="panel-collapse collapse" style="display: block">
                         <div class="panel-body" onclick="repositoryControl()">
                             <a  onclick="repositoryControl()">仓库管理 </a>
                         </div>
-                        <div class="panel-body" >
-                            仓库信息
+                        <div class="panel-body" onclick="repositoryInfo()" style="display: block">
+                            <a  onclick="repositoryInfo()" >仓库信息</a>
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-195418" href="#panel-element-280714">Collapsible Group Item #2</a>
+                        <p class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-195418">查看回执单</p>
                     </div>
-                    <div id="panel-element-280714" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            测试
+                    <div id="panel-element-280714" class="panel-collapse collapse" style="display: block">
+                        <div class="panel-body" style="display: block">
+                            <a onclick="reword()"> 回执单信息</a>
                         </div>
                     </div>
                 </div>
