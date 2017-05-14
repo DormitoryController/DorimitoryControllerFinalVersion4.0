@@ -45,4 +45,13 @@
         <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
     </bean>
 
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 指定扫描的包名
+        如果扫描多个包，每个包中间使用半角逗号分隔
+        -->
+        <property name="basePackage" value="com.dormitory.Dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+
+    </bean>
+
 </beans>

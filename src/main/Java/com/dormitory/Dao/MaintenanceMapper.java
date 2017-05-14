@@ -21,4 +21,6 @@ public interface MaintenanceMapper {
     void updateResponse(Maintenance maintenance);  //插入回执情况
     void updateEstimate(Maintenance maintenance);  //插入评价
     void deleteMaintenance(int id);  //删除维修表
+    List<Maintenance> selectReform(String stu_name);  //学生查询维修表
+
 }
