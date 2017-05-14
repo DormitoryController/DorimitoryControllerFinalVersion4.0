@@ -5,6 +5,10 @@
         SELECT * FROM checkcode WHERE id=#{id}
     </select>
 
+    <select id="selectAllCheckcode" resultType="com.dormitory.model.po.Checkcode">
+        SELECT * FROM checkcode
+    </select>
+
     <select id="selectCheckcodeWhenRegister" resultType="com.dormitory.model.po.Checkcode">
         SELECT * FROM checkcode WHERE user_type=#{user_type} AND use_state="0"
     </select>
