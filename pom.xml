@@ -82,6 +82,16 @@
       <artifactId>json</artifactId>
       <version>20160810</version>
     </dependency>
+      <dependency>
+          <groupId>date-me-server</groupId>
+          <artifactId>date-me-api</artifactId>
+          <version>1.0-SNAPSHOT</version>
+      </dependency>
+    <dependency>
+      <groupId>date-me-server</groupId>
+      <artifactId>date-me-api</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 
   <build>

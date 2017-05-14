@@ -11,5 +11,7 @@ import java.util.List;
 @Repository
 public interface ItemListMapper {
     List<ItemList> selectAllItemList();
+    List<ItemList> selectItemListByMaintenance(int maintenance_id);
     void insertItemList(ItemList itemList);
+
 }

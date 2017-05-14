@@ -8,6 +8,7 @@ public class ItemList {
     private int maintenance_id;
     private int item_id;
     private int item_num;
+    private Item item;
 
     public ItemList() {
     }
@@ -58,6 +59,7 @@ public class ItemList {
                 ", maintenance_id=" + maintenance_id +
                 ", item_id=" + item_id +
                 ", item_num=" + item_num +
+                ", item=" + item +
                 '}';
     }
 }

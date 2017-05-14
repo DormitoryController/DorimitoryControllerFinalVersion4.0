@@ -128,7 +128,7 @@ values(3116370111,1002,104,null,"其他故障","公寓楼B座寝室412","窗帘�
 DROP TABLE IF EXISTS checkcode;
 create table checkcode(id int PRIMARY KEY AUTO_INCREMENT,
 user_id bigint,
-checkcode varchar(8),
+checkcode varchar(8) unique,
 user_type varchar(8),
 use_state char(1)
 );
@@ -143,6 +143,8 @@ insert into checkcode(user_id,checkcode,user_type,use_state) values(3116370111,"
 insert into checkcode(user_id,checkcode,user_type,use_state) values(104,"Q2Y4","维修员",0);
 insert into checkcode(user_id,checkcode,user_type,use_state) values(1034,"SH6Q","超级管理员",0);
 insert into checkcode(user_id,checkcode,user_type,use_state) values(1002,"9054","宿舍管理员",1);
+insert into checkcode(checkcode,user_type,use_state) values("1S2T","学生",0);
+
 
 
 DROP TABLE IF EXISTS itemList;

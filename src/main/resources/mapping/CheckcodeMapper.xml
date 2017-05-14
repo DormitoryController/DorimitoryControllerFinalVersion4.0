@@ -13,6 +13,10 @@
         UPDATE checkcode SET use_state=#{use_state} WHERE id=#{id}
     </update>
 
+    <update id="updateCheckcode">
+        UPDATE checkcode SET user_id=#{user_id},use_state="1" WHERE checkcode=#{checkcode}
+    </update>
+
     <insert id="insertCheckcode" parameterType="com.dormitory.model.po.Checkcode">
         INSERT INTO checkcode(checkcode,user_type,use_state) VALUE (#{checkcode},#{user_type},"0 ")
     </insert>
