@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 public class LoginingController {
     String username="王力";
     String password="123";
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/")
     public String Logining(){
          return "MainView/logining";
     }

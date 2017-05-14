@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.ws.Response;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 /**
@@ -149,10 +150,11 @@ public class MainController {
     public void checkReword(HttpServletRequest request, HttpServletResponse response) throws Exception {
         List<Maintenance> maintenanceslist=new LinkedList<Maintenance>();
         List<Repairer> repairerlist=new LinkedList<Repairer>();
+        Date date=new Date();
         for (int i = 0; i <10 ; i++) {
             Maintenance maintenance = new Maintenance();
             maintenance.setId(1);
-            maintenance.setResponse_time("2014.1.1");
+            maintenance.setResponse_time(date);
             maintenance.setItem_id(2);
             maintenance.setItem_num(50);
             Repairer repairer = new Repairer();
