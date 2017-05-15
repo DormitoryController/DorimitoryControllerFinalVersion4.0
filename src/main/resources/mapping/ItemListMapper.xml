@@ -8,4 +8,19 @@
     <insert id="insertItemList" parameterType="com.dormitory.model.po.ItemList">
         INSERT INTO itemList(maintenance_id,item_id,item_num) VALUE (#{maintenance_id},#{item_id},#{item_num})
     </insert>
+
+    <select id="selectItemListByMaintenance" parameterType="java.lang.Integer" resultMap="Item_info">
+        SELECT itemList.*,items.name FROM itemList,items WHERE itemList.maintenance_id=#{maintenance_id} AND itemList.item_id=items.id
+    </select>
+
+    <resultMap id="Item_info" type="com.dormitory.model.po.ItemList">
+        <id column="id" property="id"/>
+        <result column="maintenance_id" property="maintenance_id"/>
+        <result column="item_id" property="item_id"/>
+        <result column="item_num" property="item_num"/>
+        <collection property="item" ofType="com.dormitory.model.po.Item">
+            <id column="item_id" property="id"/>
+            <result column="name" property="name"/>
+        </collection>
+    </resultMap>
 </mapper>

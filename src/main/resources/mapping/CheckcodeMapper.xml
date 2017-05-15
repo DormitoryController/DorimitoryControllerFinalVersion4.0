@@ -5,12 +5,20 @@
         SELECT * FROM checkcode WHERE id=#{id}
     </select>
 
+    <select id="selectAllCheckcode" resultType="com.dormitory.model.po.Checkcode">
+        SELECT * FROM checkcode
+    </select>
+
     <select id="selectCheckcodeWhenRegister" resultType="com.dormitory.model.po.Checkcode">
         SELECT * FROM checkcode WHERE user_type=#{user_type} AND use_state="0"
     </select>
 
     <update id="updateCheckcodeState">
         UPDATE checkcode SET use_state=#{use_state} WHERE id=#{id}
+    </update>
+
+    <update id="updateCheckcode">
+        UPDATE checkcode SET user_id=#{user_id},use_state="1" WHERE checkcode=#{checkcode}
     </update>
 
     <insert id="insertCheckcode" parameterType="com.dormitory.model.po.Checkcode">
