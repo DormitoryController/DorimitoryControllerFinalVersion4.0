@@ -17,4 +17,5 @@ public interface RepairerMapper {
     void insertReq(Repairer repairer);  //插入维修员信息
     void deleteReq(@Param("id") int id);  //删除维修员
     void updateReq(@Param("id") int id,@Param("state") String state);  //更新维修员信息
+    List<Repairer> selectRepByState(@Param("repairer_state") String repairer_state);
 }
