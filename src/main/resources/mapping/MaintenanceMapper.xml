@@ -51,8 +51,8 @@
     </select>
 
     <update id="updateMaintenanceState" parameterType="java.lang.Integer">
-        UPDATE maintenances SET fault_state=#{fault_state}
-        WHERE id=#{id}
+        UPDATE maintenances SET fault_state="修复"
+        WHERE id=#{maintenance_id}
     </update>
 
     <select id="selectMaintenanceByStuName" parameterType="java.lang.String" resultType="com.dormitory.model.po.Maintenance">
