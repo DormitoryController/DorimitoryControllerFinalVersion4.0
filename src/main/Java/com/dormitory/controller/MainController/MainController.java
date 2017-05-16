@@ -52,31 +52,31 @@ public class MainController {
         return "MainView/index";
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/user")
-    public void user(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        List<User> list = new LinkedList();
-        for (int i = 0; i < 5; i++) {
-            User user = new User();
-            user.setId(5);
-            user.setName("王立");
-            user.setSex("男");
-            list.add(user);
-        }
-        String username = "王立";
-        response.setHeader("content-type", "text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("userlist", list);
-        out.print(jsonObject.toString());
-        out.flush();
-        out.close();
-    }
-
-    @RequestMapping(value = "/test")
-    public String test() {
-        return "MainView/test";
-    }
+//    @ResponseBody
+//    @RequestMapping(value = "/user")
+//    public void user(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//        List<User> list = new LinkedList();
+//        for (int i = 0; i < 5; i++) {
+//            User user = new User();
+//            user.setId(5);
+//            user.setName("王立");
+//            user.setSex("男");
+//            list.add(user);
+//        }
+//        String username = "王立";
+//        response.setHeader("content-type", "text/html;charset=UTF-8");
+//        PrintWriter out = response.getWriter();
+//        JSONObject jsonObject = new JSONObject();
+//        jsonObject.put("userlist", list);
+//        out.print(jsonObject.toString());
+//        out.flush();
+//        out.close();
+//    }
+//
+//    @RequestMapping(value = "/test")
+//    public String test() {
+//        return "MainView/test";
+//    }
 
     @RequestMapping(value = "/repositoryTable")
     public String repositoryTable() {
@@ -208,24 +208,24 @@ public class MainController {
          List<ItemList> itemListList=itemListMapper.selectItemListByMaintenance(maintenaceId);
          for(ItemList itemList:itemListList){
              itemNumList.add(itemList.getItem_num());
-             itemNameList.add(itemList.g)
+             itemNameList.add(itemList.getItem().getName());
          }
-         Repairer repairer=new Repairer();
-         repairer.setTelephone("1444444444444444444");
-         repairer.setName("王力");
-         Maintenance maintenance=new Maintenance();
-         maintenance.setFault_detail("马桶坏了sadddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-         maintenance.setFault_analysis("换个马桶dsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-         replist.add(repairer);
-         mainList.add(maintenance);
-         Student student=new Student();
-         student.setName("王力");
-         student.setDormnum("第二公寓");
-         studentList.add(student);
-         itemNameList.add("龙头");
-         itemNumList.add(1);
-         itemNameList.add("水管");
-         itemNumList.add(8);
+//         Repairer repairer=new Repairer();
+//         repairer.setTelephone("1444444444444444444");
+//         repairer.setName("王力");
+//         Maintenance maintenance=new Maintenance();
+//         maintenance.setFault_detail("马桶坏了sadddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+//         maintenance.setFault_analysis("换个马桶dsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//         replist.add(repairer);
+//         mainList.add(maintenance);
+//         Student student=new Student();
+//         student.setName("王力");
+//         student.setDormnum("第二公寓");
+//         studentList.add(student);
+//         itemNameList.add("龙头");
+//         itemNumList.add(1);
+//         itemNameList.add("水管");
+//         itemNumList.add(8);
         jsonObject.put("maintenanceId",maintenaceId);
          jsonObject.put("replist",replist);
          jsonObject.put("mainlist",mainList);
@@ -240,16 +240,21 @@ public class MainController {
     }
     @RequestMapping(value = "/addItem")
     public void addItrm(HttpServletRequest request, HttpServletResponse response)throws Exception{
+        String[] numlist=request.getParameterValues("numlist[]");
+        String[] itemlist=request.getParameterValues("itemlist[]");
         String[] pricelist=request.getParameterValues("pricelist[]");
-        for(String price:pricelist){
-            System.out.println(price);
+        for(int i=0;i<itemlist.length;i++){
+            Item items=itemMapper.selectItemByName(itemlist[i]);
+            itemMapper.updateItem(itemlist[i],items.getRepertory()+Integer.valueOf(numlist[i]));
         }
     }
     @RequestMapping(value = "/reduceItem")
     public void reduceItrm(HttpServletRequest request, HttpServletResponse response)throws Exception{
         String[] numlist=request.getParameterValues("numlist[]");
-        for(String num:numlist){
-            System.out.println(num);
+        String[] itemlist=request.getParameterValues("itemlist[]");
+        for(int i=0;i<itemlist.length;i++){
+             Item items=itemMapper.selectItemByName(itemlist[i]);
+             itemMapper.updateItem(itemlist[i],items.getRepertory()-Integer.valueOf(numlist[i]));
         }
     }
 
