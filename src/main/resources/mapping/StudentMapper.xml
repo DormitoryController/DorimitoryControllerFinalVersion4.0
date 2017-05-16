@@ -27,7 +27,7 @@
     </delete>
 
     <update id="updateStudent" parameterType="com.dormitory.model.po.Student">
-        UPDATE students SET name=#{name},flatnum=#{flatnum},dormnum=#{dormnum},telephone=#{telephone},email=#{email}
+        UPDATE students SET name=#{name},password=#{password},flatnum=#{flatnum},dormnum=#{dormnum},telephone=#{telephone},email=#{email}
         WHERE username=#{username}
     </update>
 

@@ -20,4 +20,5 @@ public interface RepairerMapper {
     void updateReq(@Param("username") String username,@Param("state") String state);  //更新维修员信息
     List<Repairer> selectRepByState(@Param("repairer_state") String repairer_state);
     int selectReqByName(String name);
+    void updateReqInfo(Repairer repairer);  //修改维修员信息
 }
