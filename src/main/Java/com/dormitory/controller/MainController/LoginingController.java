@@ -39,21 +39,27 @@ public class LoginingController {
         return "MainView/logining";
     }
     @RequestMapping(value = "/checkIn")
-    public void CheckIn(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void CheckIn(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         JSONObject jsonObject = new JSONObject();
         if(!password.equals("")&&password.equals(studentMapper.selectStuByUsername(username).getPassword())){
             jsonObject.put("loginCheck","true");
             jsonObject.put("userType","学生");
+            session.setAttribute("username",username);
+            session.setAttribute("password",password);
         }
         if(!password.equals("")&&password.equals(repairerMapper.selectRepByUsername(username).getPassword())){
             jsonObject.put("loginCheck","true");
             jsonObject.put("userType","维修员");
+            session.setAttribute("username",username);
+            session.setAttribute("password",password);
         }
         if(!password.equals("")&&password.equals(supervisorMapper.selectSvByUsername(username).getPassword())){
             jsonObject.put("loginCheck","true");
             jsonObject.put("userType","宿舍管理员");
+            session.setAttribute("username",username);
+            session.setAttribute("password",password);
         }
         else {
             jsonObject.put("loginCheck","false");
@@ -163,24 +169,32 @@ public class LoginingController {
                        Student student=studentMapper.selectStuById(id);
                        if(registerUsername.equals(student.getUsername())){
                            student.setPassword(registerPassword);
+                           studentMapper.updateStudent(student);
+                           registerCheck="true";
                        }
                    }
                    if(userType.equals("宿舍管理员")){
-                       Supervisor supervisor=supervisorMapper.selectSvById(id)
+                       Supervisor supervisor=supervisorMapper.selectSvById(id);
                        if(registerUsername.equals(supervisor.getUsername())){
                            supervisor.setPassword(registerPassword);
+                           supervisorMapper.updateSupersivor(supervisor);
+                           registerCheck="true";
                        }
+
                    }
                    if(userType.equals("维修员")){
-                       Repairer repairer=new Repairer();
+                       Repairer repairer=repairerMapper.selectRepById(id);
                        if(registerUsername.equals(repairer.getUsername())){
-                           student.setPassword(registerPassword);
+                           repairer.setPassword(registerPassword);
+                           repairerMapper.updateReqInfo(repairer);
+                           registerCheck="true";
                        }
                    }
                }
 
            }
         }
+        jsonObject.put("registerCheck",registerCheck);
         response.setHeader("content-type", "text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         out.print(jsonObject.toString());

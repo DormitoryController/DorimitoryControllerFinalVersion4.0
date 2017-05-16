@@ -1,7 +1,6 @@
 package com.dormitory.controller.MainController;
 
-import com.dormitory.Dao.ItemMapper;
-import com.dormitory.Dao.UserDao;
+import com.dormitory.Dao.*;
 import com.dormitory.model.po.*;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +27,17 @@ import java.util.List;
 public class MainController {
 
     private int maintenaceId=0;
+
     @Autowired
     private ItemMapper itemMapper;
+    @Autowired
+    private MaintenanceMapper maintenanceMapper;
+    @Autowired
+    private RepairerMapper repairerMapper;
+    @Autowired
+    private StudentMapper studentMapper;
+    @Autowired
+    private ItemListMapper itemListMapper;
 
     public int getMaintenaceId() {
         return maintenaceId;
@@ -93,16 +101,8 @@ public class MainController {
     @RequestMapping(value = "/item")
     public void item(HttpServletRequest request, HttpServletResponse response) throws Exception {
         int index = Integer.valueOf(request.getParameter("index"));
-        List<Item> itemlist = new LinkedList<Item>();
+        List<Item> itemlist =itemMapper.selectAllItem();
         List<Item> relist = new LinkedList<Item>();
-        for (int i = 0; i < 52; i++) {
-            Item item = new Item();
-            item.setId(i);
-            item.setName("螺丝");
-            item.setPrice("五元");
-            item.setRepertory(10);
-            itemlist.add(item);
-        }
         for (int i = 0; i < 5; i++) {
             if (index * 5 + i < itemlist.size()) {
                 relist.add(itemlist.get(index * 5 + i));
@@ -134,7 +134,7 @@ public class MainController {
 //        item.setPrice("55");
 //        item2.setName("点灯");
 //        itemslist.add(item2);
-        List<Item> itemslist=itemMapper.
+        List<Item> itemslist=itemMapper.selectAllItem();
         response.setHeader("content-type", "text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         JSONObject jsonObject = new JSONObject();
@@ -155,31 +155,23 @@ public class MainController {
     }
     @RequestMapping(value = "/checkReword")
     public void checkReword(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        List<Maintenance> maintenanceslist=new LinkedList<Maintenance>();
-        List<Repairer> repairerlist=new LinkedList<Repairer>();
+        List<Maintenance> maintenanceslist=maintenanceMapper.selectAllMaintenance();
         int index = Integer.valueOf(request.getParameter("index"));
-        Date date=new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String mydate = sdf.format(date);
-        for (int i = 0; i <50 ; i++) {
-            Maintenance maintenance = new Maintenance();
-            maintenance.setId(i);
-            maintenance.setResponse_time(date);
-            Repairer repairer = new Repairer();
-            repairer.setEmail("99999999");
-            repairer.setName("王立");
-            repairer.setOfficenum("西十一");
-            repairer.setTelephone("114444444");
-            maintenanceslist.add(maintenance);
-            repairerlist.add(repairer);
+        List<Repairer> repairerlist=new LinkedList<Repairer>();
+        List<String> dateList=new LinkedList<String>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        for(Maintenance maintenance:maintenanceslist){
+            repairerlist.add(repairerMapper.selectRepById(maintenance.getRepairer_id()));
+            dateList.add(sdf.format(maintenance.getResponse_time()));
         }
         List<Maintenance> reMainList=new LinkedList<Maintenance>();
         List<Repairer> reRepairerList=new LinkedList<Repairer>();
+        List<String> reDateList=new LinkedList<String>();
         for (int i = 0; i < 5; i++) {
             if (index * 5 + i < maintenanceslist.size()) {
                 reMainList.add(maintenanceslist.get(index * 5 + i));
                 reRepairerList.add(repairerlist.get(index*5+i));
-                System.out.println(index*5+i);
+                reDateList.add(dateList.get(index*5+i));
             }
         }
             response.setHeader("content-type", "text/html;charset=UTF-8");
@@ -187,7 +179,7 @@ public class MainController {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("repairerlist", reRepairerList);
             jsonObject.put("maintenanceslist",reMainList);
-            jsonObject.put("date",mydate);
+            jsonObject.put("datelist",reDateList);
             out.print(jsonObject.toString());
             out.flush();
             out.close();
@@ -209,6 +201,15 @@ public class MainController {
          List<Student> studentList=new LinkedList<Student>();
          List<String> itemNameList=new LinkedList<String>();
          List<Integer> itemNumList=new LinkedList<Integer>();
+        Maintenance maintenance=maintenanceMapper.selectMaintenanceById(maintenaceId);
+         mainList.add(maintenance);
+         replist.add(repairerMapper.selectRepById(maintenance.getRepairer_id()));
+         studentList.add(studentMapper.selectStuById(maintenance.getStudent_id()));
+         List<ItemList> itemListList=itemListMapper.selectItemListByMaintenance(maintenaceId);
+         for(ItemList itemList:itemListList){
+             itemNumList.add(itemList.getItem_num());
+             itemNameList.add(itemList.g)
+         }
          Repairer repairer=new Repairer();
          repairer.setTelephone("1444444444444444444");
          repairer.setName("王力");
