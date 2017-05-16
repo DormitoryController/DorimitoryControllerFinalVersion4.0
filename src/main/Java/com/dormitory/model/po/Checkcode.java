@@ -5,7 +5,7 @@ package com.dormitory.model.po;
  */
 public class Checkcode {
     private int id;
-    private Long user_id;
+    private int user_id;
     private String checkcode;
     private String user_type;
     private String use_state;
@@ -14,7 +14,7 @@ public class Checkcode {
     public Checkcode() {
     }
 
-    public Checkcode(int id, Long user_id, String checkcode, String use_state, String state) {
+    public Checkcode(int id, int user_id, String checkcode, String use_state, String state) {
         this.id = id;
         this.user_id = user_id;
         this.checkcode = checkcode;
@@ -30,11 +30,11 @@ public class Checkcode {
         this.id = id;
     }
 
-    public Long getUser_id() {
+    public int getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(Long user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 
