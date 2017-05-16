@@ -14,8 +14,8 @@
         SELECT maintenances.*,students.name,students.telephone FROM maintenances,students,repairers WHERE repairers.username=#{rep_name} AND maintenances.repairer_id=repairers.id AND students.id=maintenances.student_id
     </select>
 
-    <select id="selectMaintenanceByState" parameterType="java.lang.String" resultType="com.dormitory.model.po.Maintenance">
-        SELECT * FROM maintenances WHERE fault_state=#{fault_state};
+    <select id="selectMaintenanceByState" parameterType="java.lang.String" resultMap="response">
+        SELECT maintenances.*,students.name FROM maintenances,students WHERE fault_state=#{fault_state} AND students.id=maintenances.student_id;
     </select>
 
     <select id="selectAllMaintenance" resultType="com.dormitory.model.po.Maintenance">
@@ -56,7 +56,7 @@
     </update>
 
     <select id="selectMaintenanceByStuUsername" parameterType="java.lang.String" resultType="com.dormitory.model.po.Maintenance">
-        SELECT maintenances.* FROM maintenances,students WHERE students.name=#{stu_name} AND maintenances.student_id=students.id
+        SELECT maintenances.* FROM maintenances,students WHERE students.username=#{stu_name} AND maintenances.student_id=students.id
     </select>
 
     <resultMap id="reform" type="com.dormitory.model.po.Maintenance">
