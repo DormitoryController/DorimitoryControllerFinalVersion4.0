@@ -5,8 +5,8 @@
         SELECT * FROM students WHERE id=#{id}
     </select>
 
-    <select id="selectStuByName" parameterType="java.lang.String" resultType="com.dormitory.model.po.Student">
-        SELECT * FROM students WHERE name=#{name}
+    <select id="selectStuByUsername" parameterType="java.lang.String" resultType="com.dormitory.model.po.Student">
+        SELECT * FROM students WHERE username=#{username}
     </select>
 
     <select id="selectAllStu" resultType="com.dormitory.model.po.Student">
@@ -14,20 +14,20 @@
     </select>
 
     <insert id="insertStudent" parameterType="com.dormitory.model.po.Student">
-        INSERT INTO students(id,name,password,sex,flatnum,dormnum,telephone,email)
-        VALUES(#{id},#{name},#{passwd},#{sex},#{flatnum},#{dormnum},#{telephone},#{email})
+        INSERT INTO students(username,name,password,sex,flatnum,dormnum,telephone,email)
+        VALUES(#{username},#{name},#{password},#{sex},#{flatnum},#{dormnum},#{telephone},#{email})
     </insert>
 
-    <delete id="deleteStudent" parameterType="java.lang.Long">
-        DELETE FROM students WHERE id=#{id}
+    <delete id="deleteStudent" parameterType="java.lang.String">
+        DELETE FROM students WHERE username=#{username}
     </delete>
 
     <update id="updateStudent" parameterType="com.dormitory.model.po.Student">
         UPDATE students SET name=#{name},flatnum=#{flatnum},dormnum=#{dormnum},telephone=#{telephone},email=#{email}
-        WHERE id=#{id}
+        WHERE username=#{username}
     </update>
 
-    <select id="selectStuIDByName" parameterType="java.lang.String" resultType="java.lang.Long">
+    <select id="selectStuIDByUsername" parameterType="java.lang.String" resultType="java.lang.Integer">
         SELECT  id FROM students WHERE name=#{name}
     </select>
 </mapper>

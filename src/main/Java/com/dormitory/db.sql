@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS students;
 
-create table students (id bigint primary key,
-name varchar(8) unique,
+create table students (id bigint primary key auto_increment ,
+username varchar(8) unique,
+name varchar(8) ,
 password varchar(8),
 sex char(1),
 flatnum varchar(8),
@@ -10,21 +11,22 @@ telephone varchar(20),
 email varchar(32)
 );
 
-insert into students(id,name,password,sex,flatnum,dormnum,telephone,email) values(2120101182,"王八","123","男","公寓楼A座","808室","18796778025","wangba@sina.com");
-insert into students(id,name,password,sex,flatnum,dormnum,telephone,email) values(2120101181,"田七","123","男","公寓楼A座","808室","18051186770","tianji@sina.com");
-insert into students(id,name,password,sex,flatnum,dormnum,telephone,email) values(2120101183,"夏九","123","男","公寓楼A座","808室","18994643624","wangba@sina.com");
-insert into students(id,name,password,sex,flatnum,dormnum,telephone,email) values(2120101184,"全十","123","男","公寓楼A座","808室","15150510002","quanbao@sina.com");
-insert into students(id,name,password,sex,flatnum,dormnum,telephone,email) values(3116370112,"王家辉","123","男","公寓楼B座","413室","18051186770","wangjiahui@sina.com");
-insert into students(id,name,password,sex,flatnum,dormnum,telephone,email) values(3116370111,"赵嗣宇","123","男","公寓楼B座","412室","15150510002","siyu@sina.com");
-insert into students(id,name,password,sex,flatnum,dormnum,telephone,email) values(3116370113,"李朋辉","123","男","公寓楼B座","413室","15150510002","lipenghui@sina.com");
-insert into students(id,name,password,sex,flatnum,dormnum,telephone,email) values(3116370109,"张志欢","123","男","公寓楼B座","410室","15150510002","zhangzhihuan@sina.com");
-insert into students(id,name,password,sex,flatnum,dormnum,telephone,email) values(3116370103,"高少军","123","男","公寓楼B座","409室","15150510002","gaoshaojun@sina.com");
-insert into students(id,name,password,sex,flatnum,dormnum,telephone,email) values(3116370104,"庞博","123","男","公寓楼B座","409室","15150510002","pangbo@sina.com");
+insert into students(username,name,password,sex,flatnum,dormnum,telephone,email) values("王八","王八","123","男","公寓楼A座","808室","18796778025","wangba@sina.com");
+insert into students(username,name,password,sex,flatnum,dormnum,telephone,email) values("田七","田七","123","男","公寓楼A座","808室","18051186770","tianji@sina.com");
+insert into students(username,name,password,sex,flatnum,dormnum,telephone,email) values("夏九","夏九","123","男","公寓楼A座","808室","18994643624","wangba@sina.com");
+insert into students(username,name,password,sex,flatnum,dormnum,telephone,email) values("全十","全十","123","男","公寓楼A座","808室","15150510002","quanbao@sina.com");
+insert into students(username,name,password,sex,flatnum,dormnum,telephone,email) values("王一","王家辉","123","男","公寓楼B座","413室","18051186770","wangjiahui@sina.com");
+insert into students(username,name,password,sex,flatnum,dormnum,telephone,email) values("赵二","赵嗣宇","123","男","公寓楼B座","412室","15150510002","siyu@sina.com");
+insert into students(username,name,password,sex,flatnum,dormnum,telephone,email) values("李三","李朋辉","123","男","公寓楼B座","413室","15150510002","lipenghui@sina.com");
+insert into students(username,name,password,sex,flatnum,dormnum,telephone,email) values("张四","张志欢","123","男","公寓楼B座","410室","15150510002","zhangzhihuan@sina.com");
+insert into students(username,name,password,sex,flatnum,dormnum,telephone,email) values("高五","高少军","123","男","公寓楼B座","409室","15150510002","gaoshaojun@sina.com");
+insert into students(username,name,password,sex,flatnum,dormnum,telephone,email) values("庞六","庞博","123","男","公寓楼B座","409室","15150510002","pangbo@sina.com");
 
 DROP TABLE IF EXISTS repairers;
 
-create table repairers (id int primary key,
-name varchar(8) unique,
+create table repairers (id int primary key auto_increment,
+username varchar(8) unique,
+name varchar(8) ,
 password varchar(8),
 sex char(1),
 repairer_type varchar(2),
@@ -34,39 +36,41 @@ email varchar(20),
 state varchar(2)
 );
 
-insert into repairers(id,name,password,sex,repairer_type,officenum,telephone,email,state) values(101,"刘师傅","123","男","火工","A座201室","0523-87436546","liushifu@sina.com","上班");
-insert into repairers(id,name,password,sex,repairer_type,officenum,telephone,email,state) values(102,"李师傅","123","男","火工","A座201室","0523-87436546","lishifu@sina.com","下班");
-insert into repairers(id,name,password,sex,repairer_type,officenum,telephone,email,state) values(103,"陈师傅","123","男","水工","A座201室","0523-87436546","chenshifu@sina.com","下班");
-insert into repairers(id,name,password,sex,repairer_type,officenum,telephone,email,state) values(104,"小迟师傅","123","男","水工","A座201室","0523-87436546","xiaochi@sina.com","上班");
-insert into repairers(id,name,password,sex,repairer_type,officenum,telephone,email,state) values(105,"赵师傅","123","男","电工","A座201室","0523-87436546","zhaoshifu@sina.com","上班");
-insert into repairers(id,name,password,sex,repairer_type,officenum,telephone,email,state) values(106,"王师傅","123","男","电工","A座201室","0523-87436546","xiao王@sina.com","下班");
+insert into repairers(username,name,password,sex,repairer_type,officenum,telephone,email,state) values("刘师傅","刘师傅","123","男","火工","A座201室","0523-87436546","liushifu@sina.com","上班");
+insert into repairers(username,name,password,sex,repairer_type,officenum,telephone,email,state) values("李师傅","李师傅","123","男","火工","A座201室","0523-87436546","lishifu@sina.com","下班");
+insert into repairers(username,name,password,sex,repairer_type,officenum,telephone,email,state) values("陈师傅","陈师傅","123","男","水工","A座201室","0523-87436546","chenshifu@sina.com","下班");
+insert into repairers(username,name,password,sex,repairer_type,officenum,telephone,email,state) values("小迟师傅","小迟师傅","123","男","水工","A座201室","0523-87436546","xiaochi@sina.com","上班");
+insert into repairers(username,name,password,sex,repairer_type,officenum,telephone,email,state) values("赵师傅","赵师傅","123","男","电工","A座201室","0523-87436546","zhaoshifu@sina.com","上班");
+insert into repairers(username,name,password,sex,repairer_type,officenum,telephone,email,state) values("王师傅","王师傅","123","男","电工","A座201室","0523-87436546","xiao王@sina.com","下班");
 
 
 DROP TABLE IF EXISTS supervisors;
 
-create table supervisors (id int primary key,
-name varchar(8) unique,
+create table supervisors (id int primary key auto_increment,
+username varchar(8) unique,
+name varchar(8) ,
 password varchar(8),
 sex char(1),
 officenum varchar(20),
 telephone varchar(20),
 email varchar(20)
 );
-insert into supervisors(id,name,password,sex,officenum,telephone,email) values(1001,"蔡阿姨","123","女","公寓楼2号101室","0523-87436546","caiayi@sina.com");
-insert into supervisors(id,name,password,sex,officenum,telephone,email) values(1002,"许阿姨","123","女","公寓楼2号101室","0523-87436546","xuayi@sina.com");
+insert into supervisors(username,name,password,sex,officenum,telephone,email) values("蔡阿姨","蔡阿姨","123","女","公寓楼2号101室","0523-87436546","caiayi@sina.com");
+insert into supervisors(username,name,password,sex,officenum,telephone,email) values("许阿姨","许阿姨","123","女","公寓楼2号101室","0523-87436546","xuayi@sina.com");
 
 DROP TABLE IF EXISTS super_administrators;
 
-create table super_administrators (id int primary key,
-name varchar(8) unique,
+create table super_administrators (id int primary key auto_increment,
+username varchar(8) unique,
+name varchar(8) ,
 password varchar(8),
 officenum varchar(20),
 telephone varchar(20),
 email varchar(20)
 );
 
-insert into super_administrators(id,name,password,officenum,telephone,email) values(1034,"张菲菲","123","主E401室","0523-87436546","zhangfeifei@sina.com");
-insert into super_administrators(id,name,password,officenum,telephone,email) values(1035,"赵瑾","123","主E401室","0523-87436546","zhaojin@sina.com");
+insert into super_administrators(username,name,password,officenum,telephone,email) values("张菲菲","张菲菲","123","主E401室","0523-87436546","zhangfeifei@sina.com");
+insert into super_administrators(username,name,password,officenum,telephone,email) values("赵瑾","赵瑾","123","主E401室","0523-87436546","zhaojin@sina.com");
 
 
 
@@ -92,8 +96,8 @@ insert into items(name,repertory,price) values("地漏",10,"¥5.0");
 DROP TABLE IF EXISTS maintenances;
 
 create table maintenances (id int not null primary key auto_increment,
-student_id bigint,
-supervisor_id bigint,
+student_id int,
+supervisor_id int,
 repairer_id int,
 repairer_type varchar(2),
 fault_type varchar(20),
@@ -108,22 +112,22 @@ estimate_detial varchar(60)
 );
 
 insert into maintenances(student_id,supervisor_id,repairer_id,repairer_type,fault_type,fault_location,fault_detail,fault_analysis,fault_state,reform_time,response_time,estimate_rate,estimate_detial)
-values(2120101182,1001,105,"电工","电器损坏","教学楼E座教室151","一个灯泡损坏","正常损坏","修复","2017-05-07","2017-05-07",4.8,"很满意");
+values(1,1,5,"电工","电器损坏","教学楼E座教室151","一个灯泡损坏","正常损坏","修复","2017-05-07","2017-05-07",4.8,"很满意");
 
 insert into maintenances(student_id,supervisor_id,repairer_id,repairer_type,fault_type,fault_location,fault_detail,fault_analysis,fault_state,reform_time,response_time,estimate_rate,estimate_detial)
-values(2120101182,1001,105,"电工","电器损坏","公寓楼B座寝室413","卫生间灯泡损坏","正常损坏","修复","2017-04-07","2017-04-08",4.7,"较为满意");
+values(1,1,5,"电工","电器损坏","公寓楼B座寝室413","卫生间灯泡损坏","正常损坏","修复","2017-04-07","2017-04-08",4.7,"较为满意");
 
 insert into maintenances(student_id,supervisor_id,repairer_id,repairer_type,fault_type,fault_location,fault_detail,fault_analysis,fault_state,reform_time,response_time,estimate_rate,estimate_detial)
-values(2120101182,1001,103,"水工","热水器问题","公寓楼B座寝室413","热水器的淋浴头出现裂缝","垃圾产品","修复","2017-05-07","2017-06-07",3.8,"维修效率低得可怕。绝对的差评！！！");
+values(1,1,3,"水工","热水器问题","公寓楼B座寝室413","热水器的淋浴头出现裂缝","垃圾产品","修复","2017-05-07","2017-06-07",3.8,"维修效率低得可怕。绝对的差评！！！");
 
 insert into maintenances(student_id,supervisor_id,repairer_id,repairer_type,fault_type,fault_location,fault_detail,fault_analysis,fault_state,reform_time,response_time,estimate_rate,estimate_detial)
-values(2120101184,1002,102,"火工","暖气故障","教学楼E座教室151","暖气打开很久都感受不到暖和","暖气室的气压问题所致","修复","2017-02-27","2017-02-27",null,"");
+values(2,2,2,"火工","暖气故障","教学楼E座教室151","暖气打开很久都感受不到暖和","暖气室的气压问题所致","修复","2017-02-27","2017-02-27",null,"");
 
 insert into maintenances(student_id,supervisor_id,repairer_id,repairer_type,fault_type,fault_location,fault_detail,fault_analysis,fault_state,reform_time,response_time,estimate_rate,estimate_detial)
-values(2120101184,1002,104,"水工","地漏问题","公寓楼A座寝室808","地漏堵塞不通水","长期积留的毛发堵住了下水口","修复","2017-03-27","2017-03-27",4.6,"问题很快得到了解决，给赞！");
+values(2,2,4,"水工","地漏问题","公寓楼A座寝室808","地漏堵塞不通水","长期积留的毛发堵住了下水口","修复","2017-03-27","2017-03-27",4.6,"问题很快得到了解决，给赞！");
 
 insert into maintenances(student_id,supervisor_id,repairer_id,repairer_type,fault_type,fault_location,fault_detail,fault_analysis,fault_state,reform_time,response_time,estimate_rate,estimate_detial)
-values(3116370111,1002,104,null,"其他故障","公寓楼B座寝室412","窗帘损坏","窗帘杆断折","修复","2017-04-07","2017-04-27",4.0,"失望");
+values(4,2,4,null,"其他故障","公寓楼B座寝室412","窗帘损坏","窗帘杆断折","修复","2017-04-07","2017-04-27",4.0,"失望");
 
 DROP TABLE IF EXISTS checkcode;
 create table checkcode(id int PRIMARY KEY AUTO_INCREMENT,

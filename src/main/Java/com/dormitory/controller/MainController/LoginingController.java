@@ -1,13 +1,7 @@
 package com.dormitory.controller.MainController;
 
-import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.PrintWriter;
 
 /**
  * Created by 赵嗣瑜 on 2017/5/11.
@@ -15,7 +9,7 @@ import java.io.PrintWriter;
 @RequestMapping(value = "/LoginingController")
 @Controller
 public class LoginingController {
-    String username="王力";
+    /*String username="王力";
     String password="123";
     @RequestMapping(value = "/")
     public String Logining(){
@@ -101,4 +95,5 @@ public class LoginingController {
 
 
     }
+    */
 }

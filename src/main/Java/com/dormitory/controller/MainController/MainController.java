@@ -1,32 +1,14 @@
 package com.dormitory.controller.MainController;
 
-import com.dormitory.Dao.UserDao;
-import com.dormitory.model.po.Item;
-import com.dormitory.model.po.Maintenance;
-import com.dormitory.model.po.Repairer;
-import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.dormitory.model.po.User;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.xml.ws.Response;
-import java.io.PrintWriter;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 /**
  * Created by 赵嗣瑜 on 2017/4/19.
  */
 @RequestMapping(value = "/MainController")
 @Controller
 public class MainController {
-    @Resource
+   /* @Resource
     private UserDao userDao;
 
     @RequestMapping(value = "/")
@@ -178,4 +160,5 @@ public class MainController {
     public String maintanancesDetail(){
         return "/MainView/maintanancesDetail";
     }
+     */
 }

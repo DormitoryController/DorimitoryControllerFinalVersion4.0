@@ -5,8 +5,9 @@ package com.dormitory.model.po;
  */
 public class Supervisor {
     private int id;
+    private String username;
     private String name;
-    private String passwd;
+    private String password;
     private String sex;
     private String telephone;
     private String email;
@@ -16,10 +17,12 @@ public class Supervisor {
 
     }
 
-    public Supervisor(int id, String name, String passwd, String sex, String telephone, String email, String officenum) {
+    public Supervisor(int id, String username, String name, String password,
+                      String sex, String telephone, String email, String officenum) {
         this.id = id;
+        this.username = username;
         this.name = name;
-        this.passwd = passwd;
+        this.password = password;
         this.sex = sex;
         this.telephone = telephone;
         this.email = email;
@@ -34,6 +37,14 @@ public class Supervisor {
         this.id = id;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getName() {
         return name;
     }
@@ -42,12 +53,12 @@ public class Supervisor {
         this.name = name;
     }
 
-    public String getPasswd() {
-        return passwd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getSex() {
@@ -86,9 +97,10 @@ public class Supervisor {
     public String toString() {
         return "Supervisor{" +
                 "id=" + id +
+                ", username='" + username + '\'' +
                 ", name='" + name + '\'' +
-                ", passwd='" + passwd + '\'' +
-                ", sex=" + sex +
+                ", password='" + password + '\'' +
+                ", sex='" + sex + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
                 ", officenum='" + officenum + '\'' +

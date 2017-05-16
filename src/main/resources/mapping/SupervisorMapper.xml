@@ -6,8 +6,8 @@
               SELECT * FROM supervisors WHERE id=#{id}
         </select>
 
-        <select id="selectSvByName" parameterType="java.lang.String" resultType="com.dormitory.model.po.Supervisor">
-              SELECT * FROM supervisors WHERE name=#{name}
+        <select id="selectSvByUsername" parameterType="java.lang.String" resultType="com.dormitory.model.po.Supervisor">
+              SELECT * FROM supervisors WHERE username=#{username}
         </select>
 
         <select id="selectAllSv" resultType="com.dormitory.model.po.Supervisor">
@@ -15,17 +15,17 @@
         </select>
 
         <insert id="insertSupervisor" parameterType="com.dormitory.model.po.Supervisor">
-              INSERT INTO supervisors(id,name,password,sex,officenum,telephone,email)
-              VALUE(#{id},#{name},#{passwd},#{sex},#{officenum},#{telephone},#{email})
+              INSERT INTO supervisors(username,name,password,sex,officenum,telephone,email)
+              VALUE(#{username},#{name},#{password},#{sex},#{officenum},#{telephone},#{email})
         </insert>
 
-        <delete id="deleteSupersivor" parameterType="java.lang.Integer">
-              DELETE FROM supervisors WHERE id=#{id}
+        <delete id="deleteSupersivor" parameterType="java.lang.String">
+              DELETE FROM supervisors WHERE username=#{username}
         </delete>
 
         <update id="updateSupersivor" parameterType="com.dormitory.model.po.Supervisor">
-              UPDATE supervisors SET name=#{name},password=#{passwd},telephone=#{telephone},email=#{email},officenum=#{officenum}
-              WHERE id=#{id}
+              UPDATE supervisors SET name=#{name},password=#{password},telephone=#{telephone},email=#{email},officenum=#{officenum}
+              WHERE username=#{username}
         </update>
 
 </mapper>

@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class Maintenance {
     private int id;
-    private Long student_id;        //学生id
+    private int student_id;        //学生id
     private int supervisor_id;      //宿管id
     private int repairer_id;        //维修员id
     private String repairer_type;
@@ -27,7 +27,9 @@ public class Maintenance {
 
     }
 
-    public Maintenance(int id, Long student_id, int supervisor_id, int repairer_id, String repairer_type, String fault_type, String fault_location, String fault_detail, String fault_analysis, String fault_state, Date reform_time, Date response_time, float estimate_rate, String estimate_detial) {
+    public Maintenance(int id, int student_id, int supervisor_id, int repairer_id, String repairer_type,
+                       String fault_type, String fault_location, String fault_detail, String fault_analysis,
+                       String fault_state, Date reform_time, Date response_time, float estimate_rate, String estimate_detial) {
         this.id = id;
         this.student_id = student_id;
         this.supervisor_id = supervisor_id;
@@ -52,11 +54,11 @@ public class Maintenance {
         this.id = id;
     }
 
-    public Long getStudent_id() {
+    public int getStudent_id() {
         return student_id;
     }
 
-    public void setStudent_id(Long student_id) {
+    public void setStudent_id(int student_id) {
         this.student_id = student_id;
     }
 
