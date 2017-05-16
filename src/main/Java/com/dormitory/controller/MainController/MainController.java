@@ -1,8 +1,10 @@
 package com.dormitory.controller.MainController;
 
+import com.dormitory.Dao.ItemMapper;
 import com.dormitory.Dao.UserDao;
 import com.dormitory.model.po.*;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +26,10 @@ import java.util.List;
 @RequestMapping(value = "/MainController")
 @Controller
 public class MainController {
-//    @Resource
-//    private UserDao userDao;
+
     private int maintenaceId=0;
+    @Autowired
+    private ItemMapper itemMapper;
 
     public int getMaintenaceId() {
         return maintenaceId;
@@ -38,19 +41,12 @@ public class MainController {
 
     @RequestMapping(value = "/")
     public String index() {
-        //测试
-//        System.out.println(userDao.addUser());
         return "MainView/index";
     }
 
     @ResponseBody
     @RequestMapping(value = "/user")
     public void user(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        List<User> userlist=userDao.findUser();
-//        httpSession.setAttribute("userlist",userlist);
-//        System.out.println(userDao.findUser());
-//        return "MainView/user";
-        System.out.println("come here");
         List<User> list = new LinkedList();
         for (int i = 0; i < 5; i++) {
             User user = new User();
@@ -125,19 +121,20 @@ public class MainController {
     @ResponseBody
     @RequestMapping(value = "/repositoryItem")
     public void repositoryItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        List<Item> itemslist = new LinkedList<Item>();
-        Item item = new Item();
-        item.setName("螺丝");
-        item.setPrice("99");
-        itemslist.add(item);
-        Item item1 = new Item();
-        item1.setPrice("11");
-        item1.setName("龙头");
-        itemslist.add(item1);
-        Item item2 = new Item();
-        item.setPrice("55");
-        item2.setName("点灯");
-        itemslist.add(item2);
+//        List<Item> itemslist = new LinkedList<Item>();
+//        Item item = new Item();
+//        item.setName("螺丝");
+//        item.setPrice("99");
+//        itemslist.add(item);
+//        Item item1 = new Item();
+//        item1.setPrice("11");
+//        item1.setName("龙头");
+//        itemslist.add(item1);
+//        Item item2 = new Item();
+//        item.setPrice("55");
+//        item2.setName("点灯");
+//        itemslist.add(item2);
+        List<Item> itemslist=itemMapper.
         response.setHeader("content-type", "text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         JSONObject jsonObject = new JSONObject();
