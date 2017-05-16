@@ -4,36 +4,47 @@ package com.dormitory.model.po;
  * Created by war on 2017/4/17.
  */
 public class Student {
-    private Long id;
+    private int id;
+    private String username;
     private String name;
     private String sex;
     private String telephone;
     private String email;
     private String flatnum;
     private String dormnum;
-    private String passwd;
+    private String password;
 
     public Student(){
 
     }
 
-    public Student(Long id, String name, String sex, String telephone, String email, String flatnum, String dormnum, String passwd) {
+    public Student(int id, String username, String name, String sex, String telephone,
+                   String email, String flatnum, String dormnum, String password) {
         this.id = id;
+        this.username = username;
         this.name = name;
         this.sex = sex;
         this.telephone = telephone;
         this.email = email;
         this.flatnum = flatnum;
         this.dormnum = dormnum;
-        this.passwd = passwd;
+        this.password = password;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getName() {
@@ -84,25 +95,26 @@ public class Student {
         this.dormnum = dormnum;
     }
 
-    public String getPasswd() {
-        return passwd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
+    public void setPassword(String passwd) {
+        this.password = passwd;
     }
 
     @Override
     public String toString() {
         return "Student{" +
                 "id=" + id +
+                ", username='" + username + '\'' +
                 ", name='" + name + '\'' +
-                ", sex=" + sex +
+                ", sex='" + sex + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
                 ", flatnum='" + flatnum + '\'' +
                 ", dormnum='" + dormnum + '\'' +
-                ", passwd='" + passwd + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

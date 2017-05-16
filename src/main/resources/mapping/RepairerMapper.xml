@@ -5,8 +5,8 @@
         SELECT * FROM repairers WHERE id=#{id}
     </select>
 
-    <select id="selectRepByName" parameterType="java.lang.String" resultType="com.dormitory.model.po.Repairer">
-        SELECT * FROM repairers WHERE name=#{name}
+    <select id="selectRepByUsername" parameterType="java.lang.String" resultType="com.dormitory.model.po.Repairer">
+        SELECT * FROM repairers WHERE username=#{username}
     </select>
 
     <select id="selectAllRep" resultType="com.dormitory.model.po.Repairer">
@@ -18,15 +18,20 @@
     </select>
 
     <insert id="insertReq" parameterType="com.dormitory.model.po.Repairer">
-        INSERT INTO repairers(id,name,password,sex,repairer_type,officenum,telephone,email,state)
-        VALUES(#{id},#{name},#{passwd},#{sex},#{repairer_type},#{officenum},#{telephone},#{email},#{state})
+        INSERT INTO repairers(username,name,password,sex,repairer_type,officenum,telephone,email,state)
+        VALUES(#{username},#{name},#{password},#{sex},#{repairer_type},#{officenum},#{telephone},#{email},#{state})
     </insert>
 
-    <delete id="deleteReq" parameterType="java.lang.Integer">
-        DELETE FROM repairers WHERE id=#{id}
+    <delete id="deleteReq" parameterType="java.lang.String">
+        DELETE FROM repairers WHERE username=#{username}
     </delete>
 
     <update id="updateReq" >
-        UPDATE repairers SET state=#{state} WHERE id=#{id}
+        UPDATE repairers SET state=#{state} WHERE username=#{username}
     </update>
+
+    <select id="selectRepByState" parameterType="java.lang.String" resultType="com.dormitory.model.po.Repairer">
+        SELECT * FROM repairers WHERE state=#{repairer_state}
+    </select>
+
 </mapper>

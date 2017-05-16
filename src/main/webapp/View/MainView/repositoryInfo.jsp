@@ -36,7 +36,7 @@
            var result = eval("(" + data + ")");
            var ob = result.itemlist;
            for (var i in ob) {
-               var txt = "<tr><th>" + ob[i].id+"</th><th>" + ob[i].name+"</th><th>2014</th><th>"+ob[i].repertory+ "</th></tr>"
+               var txt = "<tr><th>" + ob[i].id+"</th><th>" + ob[i].name+"</th><th>"+ob[i].price+"</th><th>"+ob[i].repertory+ "</th></tr>"
                $("#tbody").append(txt);
            }
        },
@@ -56,7 +56,7 @@
                 if(ob[0]!=null) {
                     $("#tbody").empty();
                     for (var i in ob) {
-                        var txt = "<tr><th>" + ob[i].id + "</th><th>" + ob[i].name + "</th><th>2014</th><th>" + ob[i].repertory + "</th></tr>"
+                        var txt = "<tr><th>" + ob[i].id + "</th><th>" + ob[i].name + "</th><th>"+ob[i].price+"</th><th>" + ob[i].repertory + "</th></tr>"
                         $("#tbody").append(txt);
                     }
                     if(index>1){
@@ -111,7 +111,7 @@
                    var ob = result.itemlist;
                    if(ob[0]!=null) {
                        for (var i in ob) {
-                           var txt = "<tr><th>" + ob[i].id + "</th><th>" + ob[i].name + "</th><th>2014</th><th>" + ob[i].repertory + "</th></tr>"
+                           var txt = "<tr><th>" + ob[i].id + "</th><th>" + ob[i].name + "</th><th>"+ob[i].price+"</th><th>" + ob[i].repertory + "</th></tr>"
                            $("#tbody").append(txt);
                        }
                        if(index>1){
@@ -166,7 +166,7 @@
                 if (ob[0]!=null) {
                     $("#tbody").empty();
                 for (var i = 0; i < 5; i++) {
-                    var txt = "<tr><th>" + ob[i].id + "</th><th>" + ob[i].name + "</th><th>2014</th><th>" + ob[i].repertory + "</th></tr>"
+                    var txt = "<tr><th>" + ob[i].id + "</th><th>" + ob[i].name + "</th><th>"+ob[i].price+"</th><th>" + ob[i].repertory + "</th></tr>"
                     $("#tbody").append(txt);
                 }
                     if(index>1){
@@ -221,10 +221,10 @@
                         产品
                     </th>
                     <th>
-                        交付时间
+                        价格
                     </th>
                     <th>
-                        状态
+                        库存
                     </th>
                 </tr>
                 </thead>

@@ -5,8 +5,9 @@ package com.dormitory.model.po;
  */
 public class Repairer {
     private int id;
+    private String username;
     private String name;
-    private String passwd;
+    private String password;
     private String sex;
     private String repairer_type;
     private String telephone;
@@ -18,16 +19,18 @@ public class Repairer {
 
     }
 
-    public Repairer(int id, String name, String passwd, String sex, String repairer_type, String telephone, String email, String officenum, String state) {
+    public Repairer(int id, String username, String name, String password, String sex,
+                    String repairer_type, String telephone, String email, String officenum, String state) {
         this.id = id;
+        this.username = username;
         this.name = name;
-        this.passwd = passwd;
+        this.password = password;
         this.sex = sex;
         this.repairer_type = repairer_type;
         this.telephone = telephone;
         this.email = email;
         this.officenum = officenum;
-        this.state=state;
+        this.state = state;
     }
 
     public int getId() {
@@ -38,6 +41,14 @@ public class Repairer {
         this.id = id;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getName() {
         return name;
     }
@@ -46,12 +57,12 @@ public class Repairer {
         this.name = name;
     }
 
-    public String getPasswd() {
-        return passwd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getSex() {
@@ -106,9 +117,10 @@ public class Repairer {
     public String toString() {
         return "Repairer{" +
                 "id=" + id +
+                ", username='" + username + '\'' +
                 ", name='" + name + '\'' +
-                ", passwd='" + passwd + '\'' +
-                ", sex=" + sex +
+                ", password='" + password + '\'' +
+                ", sex='" + sex + '\'' +
                 ", repairer_type='" + repairer_type + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +

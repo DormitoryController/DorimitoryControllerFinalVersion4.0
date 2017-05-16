@@ -7,11 +7,11 @@
     </select>
 
     <select id="selectMaintenanceByStu" parameterType="java.lang.String" resultMap="reform">
-        SELECT maintenances.*,repairers.name,repairers.telephone FROM maintenances,students,repairers WHERE students.name=#{stu_name} AND maintenances.student_id=students.id AND repairers.id=maintenances.repairer_id
+        SELECT maintenances.*,repairers.name,repairers.telephone FROM maintenances,students,repairers WHERE students.username=#{stu_name} AND maintenances.student_id=students.id AND repairers.id=maintenances.repairer_id
     </select>
 
     <select id="selectMaintenanceByRep" parameterType="java.lang.String" resultMap="response">
-        SELECT maintenances.*,students.name,students.telephone FROM maintenances,students,repairers WHERE repairers.name=#{rep_name} AND maintenances.repairer_id=repairers.id AND students.id=maintenances.student_id
+        SELECT maintenances.*,students.name,students.telephone FROM maintenances,students,repairers WHERE repairers.username=#{rep_name} AND maintenances.repairer_id=repairers.id AND students.id=maintenances.student_id
     </select>
 
     <select id="selectMaintenanceByState" parameterType="java.lang.String" resultType="com.dormitory.model.po.Maintenance">
@@ -33,7 +33,7 @@
     </update>
 
     <update id="updateResponse" parameterType="com.dormitory.model.po.Maintenance">
-        UPDATE maintenances SET item_id=#{item_id},fault_analysis=#{fault_analysis},fault_state=#{fault_state},response_time=#{response_time},item_num=#{item_num}
+        UPDATE maintenances SET fault_analysis=#{fault_analysis},fault_state=#{fault_state},response_time=#{response_time}
         WHERE id=#{id}
     </update>
 
@@ -47,7 +47,16 @@
     </delete>
 
     <select id="selectReform" parameterType="java.lang.String" resultMap="reform">
-        SELECT maintenances.*,repairers.name,repairers.telephone FROM maintenances,students,repairers WHERE students.name=#{stu_name} AND maintenances.student_id=students.id AND repairers.id=maintenances.repairer_id
+        SELECT maintenances.*,repairers.name,repairers.telephone FROM maintenances,students,repairers WHERE students.username=#{username} AND maintenances.student_id=students.id AND repairers.id=maintenances.repairer_id
+    </select>
+
+    <update id="updateMaintenanceState" parameterType="java.lang.Integer">
+        UPDATE maintenances SET fault_state="修复"
+        WHERE id=#{maintenance_id}
+    </update>
+
+    <select id="selectMaintenanceByStuUsername" parameterType="java.lang.String" resultType="com.dormitory.model.po.Maintenance">
+        SELECT maintenances.* FROM maintenances,students WHERE students.name=#{stu_name} AND maintenances.student_id=students.id
     </select>
 
     <resultMap id="reform" type="com.dormitory.model.po.Maintenance">

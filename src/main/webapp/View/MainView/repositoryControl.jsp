@@ -33,10 +33,10 @@ background-color: #d9edf7;
 <div class="tabbable" >
     <ul class="nav nav-tabs">
         <li class="active">
-            <a href="#panel-453243" data-toggle="tab"  onclick="repositoryControlAdd()">耗材提交</a>
+            <a href="#panel-453243" data-toggle="tab"  onclick="repositoryControlAdd()">采购信息提交</a>
         </li>
         <li>
-            <a href="#panel-573909" data-toggle="tab"  onclick="repositoryControlReduce()">采购信息提交</a>
+            <a href="#panel-573909" data-toggle="tab"  onclick="repositoryControlReduce()">耗材提交</a>
         </li>
     </ul>
     <div class="tab-content">
