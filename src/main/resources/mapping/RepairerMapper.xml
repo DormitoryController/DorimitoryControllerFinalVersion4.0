@@ -26,12 +26,20 @@
         DELETE FROM repairers WHERE username=#{username}
     </delete>
 
+    <delete id="deleteReqById" parameterType="java.lang.Integer">
+        DELETE FROM repairers WHERE id=#{id}
+    </delete>
+
     <update id="updateReq" >
         UPDATE repairers SET state=#{state} WHERE username=#{username}
     </update>
 
     <select id="selectRepByState" parameterType="java.lang.String" resultType="com.dormitory.model.po.Repairer">
         SELECT * FROM repairers WHERE state=#{repairer_state}
+    </select>
+
+    <select id="selectReqByName" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT id FROM repairers WHERE name=#{name}
     </select>
 
 </mapper>

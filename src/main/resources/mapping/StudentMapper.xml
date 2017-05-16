@@ -18,6 +18,10 @@
         VALUES(#{username},#{name},#{password},#{sex},#{flatnum},#{dormnum},#{telephone},#{email})
     </insert>
 
+    <delete id="deleteStudentById" parameterType="java.lang.Integer">
+        DELETE FROM students WHERE id=#{id}
+    </delete>
+
     <delete id="deleteStudent" parameterType="java.lang.String">
         DELETE FROM students WHERE username=#{username}
     </delete>
@@ -28,6 +32,6 @@
     </update>
 
     <select id="selectStuIDByUsername" parameterType="java.lang.String" resultType="java.lang.Integer">
-        SELECT  id FROM students WHERE name=#{name}
+        SELECT  id FROM students WHERE username=#{username}
     </select>
 </mapper>

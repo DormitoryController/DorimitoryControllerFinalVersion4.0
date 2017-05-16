@@ -23,6 +23,10 @@
               DELETE FROM supervisors WHERE username=#{username}
         </delete>
 
+    <delete id="deleteSupersivorById" parameterType="java.lang.Integer">
+        DELETE FROM supervisors WHERE id=#{id}
+    </delete>
+
         <update id="updateSupersivor" parameterType="com.dormitory.model.po.Supervisor">
               UPDATE supervisors SET name=#{name},password=#{password},telephone=#{telephone},email=#{email},officenum=#{officenum}
               WHERE username=#{username}

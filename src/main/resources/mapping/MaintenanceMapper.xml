@@ -56,7 +56,7 @@
     </update>
 
     <select id="selectMaintenanceByStuUsername" parameterType="java.lang.String" resultType="com.dormitory.model.po.Maintenance">
-        SELECT maintenances.* FROM maintenances,students WHERE students.name=#{stu_name} AND maintenances.student_id=students.id
+        SELECT maintenances.* FROM maintenances,students WHERE students.username=#{stu_name} AND maintenances.student_id=students.id
     </select>
 
     <resultMap id="reform" type="com.dormitory.model.po.Maintenance">

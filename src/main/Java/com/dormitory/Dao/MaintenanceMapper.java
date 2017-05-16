@@ -12,8 +12,8 @@ import java.util.List;
 @Repository
 public interface MaintenanceMapper {
     Maintenance selectMaintenanceById(int id);  //根据id号查询维修表
-    List<Maintenance> selectMaintenanceByStu(String stu_name);  //根据学生名查询维修表
-    List<Maintenance> selectMaintenanceByRep(String rep_name);  //根据维修员查询维修表
+    List<Maintenance> selectMaintenanceByStu(String stu_username);  //根据学生名查询维修表
+    List<Maintenance> selectMaintenanceByRep(String rep_username);  //根据维修员查询维修表
     List<Maintenance> selectMaintenanceByState(String fault_state);  //根据维修状态查询维修表
     List<Maintenance> selectAllMaintenance();  //查询所有维修表
     void insertReform(Maintenance maintenance);  //增加报修情况
@@ -23,6 +23,6 @@ public interface MaintenanceMapper {
     void deleteMaintenance(int id);  //删除维修表
     List<Maintenance> selectReform(String username);  //学生查询维修表
     void updateMaintenanceState(int maintenance_id);           //更新维修状态
-    List<Maintenance> selectMaintenanceByStuUsername(String stu_name);  //根据学生名查询维修表
+    List<Maintenance> selectMaintenanceByStuUsername(String stu_username);  //根据学生名查询维修表
 
 }
