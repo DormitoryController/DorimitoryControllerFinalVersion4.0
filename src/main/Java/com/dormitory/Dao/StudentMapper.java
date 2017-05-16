@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 public interface StudentMapper {
-     Student selectStuById(@Param("id") Long id);  //根据id查询学生信息
+     Student selectStuById(@Param("id") int id);  //根据id查询学生信息
      Student selectStuByUsername(String username); //根据用户名查询学生信息
      List<Student> selectAllStu();  //查询所有学生
      void insertStudent(Student student);  //插入学生信息
