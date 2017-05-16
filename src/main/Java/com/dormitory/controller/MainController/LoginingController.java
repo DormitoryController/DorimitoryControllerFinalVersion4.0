@@ -104,6 +104,9 @@ public class LoginingController {
                     student.setUsername(registerUsername);
                     student.setPassword(registerPassword);
                     studentMapper.insertStudent(student);
+                    Student reStudent=studentMapper.selectStuByUsername(registerUsername);
+                    int unitId=reStudent.getId();
+                    checkcodeMapper.updateCheckcode(checkCode,unitId);
                     break;
                 }
                 if(userType.equals("宿舍管理员")) {
@@ -146,12 +149,27 @@ public class LoginingController {
         List<Checkcode> checkcodeList=checkcodeMapper.selectAllCheckcode();
         for (Checkcode getCheckCode:checkcodeList){
            if(checkCode.equals(getCheckCode.getCheckcode())){
-               int id=getCheckCode.getId();
+               Long id=getCheckCode.getUser_id();
                String userType=getCheckCode.getUser_type();
                String user_state=getCheckCode.getUse_state();
                if(user_state.equals("1")){
                    if(userType.equals("学生")){
                        Student student=studentMapper.selectStuById(id);
+                       if(registerUsername.equals(student.getUsername())){
+                           student.setPassword(registerPassword);
+                       }
+                   }
+                   if(userType.equals("宿舍管理员")){
+                       Supervisor supervisor=supervisorMapper.selectSvById(id)
+                       if(registerUsername.equals(supervisor.getUsername())){
+                           supervisor.setPassword(registerPassword);
+                       }
+                   }
+                   if(userType.equals("维修员")){
+                       Repairer repairer=new Repairer();
+                       if(registerUsername.equals(repairer.getUsername())){
+                           student.setPassword(registerPassword);
+                       }
                    }
                }
 
