@@ -1,14 +1,11 @@
 package com.dormitory.controller.MainController;
 
 import com.dormitory.Dao.UserDao;
-import com.dormitory.model.po.Item;
-import com.dormitory.model.po.Maintenance;
-import com.dormitory.model.po.Repairer;
+import com.dormitory.model.po.*;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.dormitory.model.po.User;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -17,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.ws.Response;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,13 +24,22 @@ import java.util.List;
 @RequestMapping(value = "/MainController")
 @Controller
 public class MainController {
-    @Resource
-    private UserDao userDao;
+//    @Resource
+//    private UserDao userDao;
+    private int maintenaceId=0;
+
+    public int getMaintenaceId() {
+        return maintenaceId;
+    }
+
+    public void setMaintenaceId(int maintenaceId) {
+        this.maintenaceId = maintenaceId;
+    }
 
     @RequestMapping(value = "/")
     public String index() {
         //测试
-        System.out.println(userDao.addUser());
+//        System.out.println(userDao.addUser());
         return "MainView/index";
     }
 
@@ -121,11 +128,14 @@ public class MainController {
         List<Item> itemslist = new LinkedList<Item>();
         Item item = new Item();
         item.setName("螺丝");
+        item.setPrice("99");
         itemslist.add(item);
         Item item1 = new Item();
+        item1.setPrice("11");
         item1.setName("龙头");
         itemslist.add(item1);
         Item item2 = new Item();
+        item.setPrice("55");
         item2.setName("点灯");
         itemslist.add(item2);
         response.setHeader("content-type", "text/html;charset=UTF-8");
@@ -150,13 +160,14 @@ public class MainController {
     public void checkReword(HttpServletRequest request, HttpServletResponse response) throws Exception {
         List<Maintenance> maintenanceslist=new LinkedList<Maintenance>();
         List<Repairer> repairerlist=new LinkedList<Repairer>();
+        int index = Integer.valueOf(request.getParameter("index"));
         Date date=new Date();
-        for (int i = 0; i <10 ; i++) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String mydate = sdf.format(date);
+        for (int i = 0; i <50 ; i++) {
             Maintenance maintenance = new Maintenance();
-            maintenance.setId(1);
+            maintenance.setId(i);
             maintenance.setResponse_time(date);
-            maintenance.setItem_id(2);
-            maintenance.setItem_num(50);
             Repairer repairer = new Repairer();
             repairer.setEmail("99999999");
             repairer.setName("王立");
@@ -164,18 +175,84 @@ public class MainController {
             repairer.setTelephone("114444444");
             maintenanceslist.add(maintenance);
             repairerlist.add(repairer);
+        }
+        List<Maintenance> reMainList=new LinkedList<Maintenance>();
+        List<Repairer> reRepairerList=new LinkedList<Repairer>();
+        for (int i = 0; i < 5; i++) {
+            if (index * 5 + i < maintenanceslist.size()) {
+                reMainList.add(maintenanceslist.get(index * 5 + i));
+                reRepairerList.add(repairerlist.get(index*5+i));
+                System.out.println(index*5+i);
+            }
+        }
             response.setHeader("content-type", "text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("repairerlist", repairerlist);
-            jsonObject.put("maintenanceslist",maintenanceslist);
+            jsonObject.put("repairerlist", reRepairerList);
+            jsonObject.put("maintenanceslist",reMainList);
+            jsonObject.put("date",mydate);
             out.print(jsonObject.toString());
             out.flush();
             out.close();
-        }
+
     }
     @RequestMapping(value = "/maintanancesDetail")
     public String maintanancesDetail(){
         return "/MainView/maintanancesDetail";
     }
+    @RequestMapping(value = "/maintanancesIdSet")
+    public void maintanancesIdSet(HttpServletRequest request, HttpServletResponse response){
+        this.setMaintenaceId(Integer.valueOf(request.getParameter("maintananceId")));
+    }
+    @RequestMapping(value = "/maitanancesInfoGet")
+    public void maintanancesInfoGet(HttpServletRequest request, HttpServletResponse response)throws Exception{
+         JSONObject jsonObject=new JSONObject();
+         List<Repairer> replist=new LinkedList<Repairer>();
+         List<Maintenance> mainList=new LinkedList<Maintenance>();
+         List<Student> studentList=new LinkedList<Student>();
+         List<String> itemNameList=new LinkedList<String>();
+         List<Integer> itemNumList=new LinkedList<Integer>();
+         Repairer repairer=new Repairer();
+         repairer.setTelephone("1444444444444444444");
+         repairer.setName("王力");
+         Maintenance maintenance=new Maintenance();
+         maintenance.setFault_detail("马桶坏了sadddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+         maintenance.setFault_analysis("换个马桶dsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+         replist.add(repairer);
+         mainList.add(maintenance);
+         Student student=new Student();
+         student.setName("王力");
+         student.setDormnum("第二公寓");
+         studentList.add(student);
+         itemNameList.add("龙头");
+         itemNumList.add(1);
+         itemNameList.add("水管");
+         itemNumList.add(8);
+        jsonObject.put("maintenanceId",maintenaceId);
+         jsonObject.put("replist",replist);
+         jsonObject.put("mainlist",mainList);
+         jsonObject.put("stulist",studentList);
+         jsonObject.put("itemNameList",itemNameList);
+         jsonObject.put("itemNumList",itemNumList);
+        response.setHeader("content-type", "text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.print(jsonObject.toString());
+        out.flush();
+        out.close();
+    }
+    @RequestMapping(value = "/addItem")
+    public void addItrm(HttpServletRequest request, HttpServletResponse response)throws Exception{
+        String[] pricelist=request.getParameterValues("pricelist[]");
+        for(String price:pricelist){
+            System.out.println(price);
+        }
+    }
+    @RequestMapping(value = "/reduceItem")
+    public void reduceItrm(HttpServletRequest request, HttpServletResponse response)throws Exception{
+        String[] numlist=request.getParameterValues("numlist[]");
+        for(String num:numlist){
+            System.out.println(num);
+        }
+    }
+
 }

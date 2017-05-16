@@ -19,6 +19,46 @@
     function returnReword() {
         $("#repositoryControl").load("/MainController/reword")
     }
+    $(document).ready(function () {
+        $.ajax({
+            type:'post',
+            url:'/MainController/maitanancesInfoGet',
+            data:{},
+            success: function (data) {
+                var result = eval("(" + data + ")");
+                var id=result.maintenanceId;
+                var replist=result.replist;
+                var mainlist=result.mainlist;
+                var stulist=result.stulist;
+                var itemNameList=result.itemNameList;
+                var itemNumList=result.itemNumList;
+                for(var i in replist){
+                    $("#maintanancesId").append(id)
+                    $("#repairerName").append(replist[i].name)
+                    $("#repairerTelephone").append(replist[i].telephone);
+                    $("#maintananceDetail").append(mainlist[i].fault_detail);
+                    $("#rewordDetail").append(mainlist[i].fault_analysis);
+                    $("#studentName").append(stulist[i].name);
+                    $("#studentRoom").append(stulist[i].dormnum);
+                    $("#repairItemList").append()
+                }
+                for(var i in itemNameList){
+                    var txt2="<tr><th>"+itemNameList[i]+"</th><th>"+itemNumList[i]+"</th></tr>"
+                    $("#repairItemList").append(txt2)
+                }
+//                var rep_name=rep[1].name;
+//                var rep_telephone=rep.telephone;
+//                var maintenance=result.maintenance;
+//                var fault_detail=maintenance.fault_detail;
+//                var fault_analysis=maintenance.fault_analysis;
+//                $("#maintanancesId").append(id)
+//                $("#repairerName").append(rep.name)
+//                $("#repairerTelephone").append(rep.telephone);
+//                $("#maintananceDetail").append(mai.fault_detail);
+//                $("#rewordDetail").append(mai.fault_analysis);
+            },
+        },JSON)
+    })
 </script>
 <body>
 <style>body {
@@ -53,6 +93,20 @@
           </tr>
           <tr>
               <th>
+                  报修人：
+              </th>
+              <th id="studentName">
+
+              </th>
+              <th>
+                  报修人住址：
+              </th>
+              <th id="studentRoom">
+
+              </th>
+          </tr>
+          <tr>
+              <th>
                   故障描述：
               </th>
           </tr>
@@ -61,10 +115,7 @@
 <table>
     <tr>
         <th>
-            <p style="word-wrap:break-word;word-break:break-all;" >
-                sadlakslfjalkjfhdakshdu9iqwaydhiuadudalwkjdlkajdawlkdjoaldahfjskhfaslfhasjkfhasjkdhkajbncknasbckjashgfuiwqhidqhyudoipashdouaiduah
-                sadlakslfjalkjfhdakshdu9iqwaydhiuadudalwkjdlkajdawlkdjoaldahfjskhfaslfhasjkfhasjkdhkajbncknasbckjashgfuiwqhidqhyudoipashdouaiduahhaiduadioashjdosaihdsao
-
+            <p style="color:royalblue;word-wrap:break-word;word-break:break-all;" id="maintananceDetail" >
             </p>
         </th>
     </tr>
@@ -77,22 +128,21 @@
     </tr>
 </table>
 <table>
+    <tbody>
     <tr>
         <th>
-            <p style="word-wrap:break-word;word-break:break-all;" >
-                sadlakslfjalkjfhdakshdu9iqwaydhiuadudalwkjdlkajdawlkdjoaldahfjskhfaslfhasjkfhasjkdhkajbncknasbckjashgfuiwqhidqhyudoipashdouaiduah
-                sadlakslfjalkjfhdakshdu9iqwaydhiuadudalwkjdlkajdawlkdjoaldahfjskhfaslfhasjkfhasjkdhkajbncknasbckjashgfuiwqhidqhyudoipashdouaiduahhaiduadioashjdosaihdsao
-
+            <p style="color:blue;word-wrap:break-word;word-break:break-all;" id="rewordDetail">
             </p>
         </th>
     </tr>
+    </tbody>
 </table>
 </body>
 <table>
     <thead>
     <tr>
         <th>
-            维修零件清单
+            维修零件清单:
         </th>
     </tr>
     </thead>
@@ -102,7 +152,7 @@
     <tfoot>
     <tr>
         <th>
-            <a onclick="returnReword()">返回</a>
+            <a onclick="returnReword()">确定</a>
         </th>
     </tr>
     </tfoot>

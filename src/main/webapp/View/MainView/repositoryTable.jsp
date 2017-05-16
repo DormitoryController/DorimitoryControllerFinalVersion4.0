@@ -34,16 +34,23 @@
                 for (var i in ob) {
                     txt1=txt1+"<option value='"+ob[i].name+"'>"+ob[i].name+"</option>"
                 }
-                var txt2="<tr><td>"+index+"</td>" +
-                    "<td><select style='background-color: #d9edf7'> "+txt1+
-                    "<td>01/04/2012 </td>" +
-                    "<td><input type='number'style='background-color: #d9edf7'></td>" +
-                    "<td onclick='addColumn()'> <a>+</a> </td>"
+                var txt2="<tr id='tr"+index+"'><td id='mydiv"+index+"'>"+index+"</td>" +
+                    "<td ><select style='background-color: #d9edf7'id='item"+index+"'> "+txt1+
+                    "<td><input type='number'style='background-color: #d9edf7'id='price"+index+"'></td>" +
+                    "<td><input type='number'style='background-color: #d9edf7'id='num"+index+"'></td>" +
+                    "<td onclick='addColumn()'> <a>+</a> </td>"+
+                    "<td onclick='deleteColumn("+index+")'> <a>-</a> </td>"+
                 "</tr>";
                 $("#table1").append(txt2);
                 index++;
             },
         },JSON)
+
+//        $("#itemBtn").on("click",function(){//upnew为这个button控件ID
+//                var txt=$("#mydiv"+1+"").text();
+//                alert(txt)
+//            }
+//        );
     })
     function addColumn() {
         $.ajax({
@@ -57,31 +64,74 @@
                 for (var i in ob) {
                    txt1=txt1+"<option value='"+ob[i].name+"'>"+ob[i].name+"</option>"
                 }
-                var txt2="<tr><td>"+index+"</td>" +
-                    "<td><select style='background-color: #d9edf7'> "+txt1+
-                    "<td>01/04/2012 </td>" +
-                    "<td><input type='number'style='background-color: #d9edf7'></td>" +
-                    "<td onclick='addColumn()'> <a>+</a> </td>"
-                "</tr>";
+                var txt2="<tr id='tr"+index+"'><td id='mydiv"+index+"'>"+index+"</td>" +
+                    "<td ><select style='background-color: #d9edf7'id='item"+index+"'> "+txt1+
+                    "<td><input type='number'style='background-color: #d9edf7'id='price"+index+"'></td>" +
+                    "<td><input type='number'style='background-color: #d9edf7'id='num"+index+"'></td>" +
+                    "<td onclick='addColumn()'> <a>+</a> </td>"+
+                    "<td onclick='deleteColumn("+index+")'> <a>-</a> </td>"+
+                    "</tr>";
                 $("#table1").append(txt2);
                 index++;
             },
         },JSON)
     }
-    function ItemSubmit() {
-        $.ajax({
-            type:'post',
-            url:'/MainController/itemSubmit',
-            data:{index:0},
-            success: function (data) {
-               alert("提交成功")
-            },
-            error:function () {
-                alter("服务器异常，提交失败")
+//    function ItemSubmit() {
+//        $.ajax({
+//            type:'post',
+//            url:'/MainController/itemSubmit',
+//            data:{index:0},
+//            success: function (data) {
+//
+//                var txt=$("#mydiv"+1+"").val();
+//                var txt1=$("#price"+1+"").val();
+//                var txt2=$("#item"+1+"").val();
+//                alert(txt2)
+//            },
+//            error:function () {
+//                alter("服务器异常，提交失败")
+//            }
+//
+//        },JSON)
+//
+//    }
+
+        $("#itemBtn").on("click",function(){//upnew为这个button控件ID
+            var pricelist=[];
+            var numlist=[];
+            var itemlist=[];
+            var length=$("#table1 tr").length+1;
+             var addCheck=0;
+            for( var i=1;i <length;i++) {
+                var txt1 = $("#item" + i + "").val();
+                var txt2 = $("#price" + i + "").val();
+                var txt3 = $("#num" + i + "").val();
+                if (txt2 != "" && txt3 != "") {
+
+                itemlist.push(txt1)
+                pricelist.push(txt2)
+                numlist.push(txt3)
+                }
+                else {
+                    alert("请输入价格或数量")
+                    addCheck=1;
+                    break
+                }
             }
-
-        },JSON)
-
+            if(addCheck==0) {
+                $.ajax({
+                    type: 'post',
+                    url: '/MainController/addItem',
+                    data: {itemlist: itemlist, pricelist: pricelist, numlist: numlist},
+                    success: function (data) {
+                        alert("成功")
+                    },
+                }, JSON)
+            }
+            }
+        );
+    function deleteColumn(number) {
+         $("#tr"+number+"").empty();
     }
 </script>
 <table class="table"  >
@@ -94,13 +144,15 @@
             产品
         </th>
         <th>
-            交付时间
+            价格
         </th>
         <th>
             数量
         </th>
         <th>
 
+        </th>
+        <th>
         </th>
     </tr>
     </thead>
@@ -111,7 +163,7 @@
     <tfoot>
     <tr class="info">
         <td>
-            <button type="submit"name="submit" style="background-color: #d9edf7" onclick="ItemSubmit()">提交修改</button>
+            <button  style="background-color: #d9edf7"id="itemBtn" >提交</button>
         </td>
     </tr>
     </tfoot>

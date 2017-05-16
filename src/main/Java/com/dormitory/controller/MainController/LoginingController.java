@@ -18,8 +18,8 @@ public class LoginingController {
     String username="王力";
     String password="123";
     @RequestMapping(value = "/")
-    public String Logining(){
-         return "MainView/logining";
+    public String Logining(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return "MainView/logining";
     }
     @RequestMapping(value = "/checkIn")
     public void CheckIn(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -65,7 +65,8 @@ public class LoginingController {
 //        String registerPassword=request.getParameter("registerPassword");
 //        String registerUsername=request.getParameter("registerUsername");
         String checkCode=request.getParameter("checkCode");
-        System.out.println("come here");
+        String userType=request.getParameter("userType");
+        System.out.println(userType);
         if(checkCode.equals("123")){
             jsonObject.put("registerCheck","true");
         }

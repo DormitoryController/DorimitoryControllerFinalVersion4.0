@@ -206,18 +206,6 @@
                 return false
             }
         }, JSON)
-//        if(index>2){
-//            $("#tfoot").empty();
-//            var txt2="<li><a href='#' onclick='prev()'>上一页</a></li>"+
-//                "<li><a href='#' onclick='load("+(index-2)+")'>"+(index-1)+"</a></li>"+
-//                "<li><a href='#' onclick='load("+(index-1)+")'>"+index+"</a></li>"+
-//                "<li><a href='#' onclick='load("+(index)+")'>"+(index+1)+"</a></li>"+
-//                "<li><a href='#' onclick='load("+(index+1)+")'>"+(index+2)+"</a></li>"+
-//                "<li><a href='#' onclick='load("+(index+2)+")'>"+(index+3)+"</a></li>"+
-//                "<li><a href='#' onclick='next()'>下一页</a></li>"
-//
-//            $("#tfoot").append(txt2);
-//        }
     }
 </script>
 <div class="container">
