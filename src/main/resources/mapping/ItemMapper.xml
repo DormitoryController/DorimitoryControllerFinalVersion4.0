@@ -12,4 +12,8 @@
     <select id="updateItem" >
         UPDATE items SET repertory=repertory-#{item_num} WHERE name=#{item_name}
     </select>
+
+    <select id="selectAllItem" resultType="com.dormitory.model.po.Item">
+        SELECT * FROM items
+    </select>
 </mapper>
