@@ -42,4 +42,9 @@
         SELECT id FROM repairers WHERE name=#{name}
     </select>
 
+    <update id="updateReqInfo">
+        UPDATE repairers SET name=#{name},password=#{password},officenum=#{officenum},telephone=#{telephone},email=#{email}
+        WHERE username=#{username}
+    </update>
+
 </mapper>
