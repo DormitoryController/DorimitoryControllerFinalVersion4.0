@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.dormitory.Dao.StudentMapper">
-    <select id="selectStuById" parameterType="java.lang.Long" resultType="com.dormitory.model.po.Student">
+    <select id="selectStuById" parameterType="java.lang.Integer" resultType="com.dormitory.model.po.Student">
         SELECT * FROM students WHERE id=#{id}
     </select>
 
