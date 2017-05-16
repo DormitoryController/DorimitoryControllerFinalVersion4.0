@@ -16,6 +16,7 @@ public interface SupervisorMapper {
     Supervisor selectSvByUsername(@Param("username") String username);
     List<Supervisor> selectAllSv();  //查询所有宿管
     void insertSupervisor(Supervisor supersiovor);  //增加宿管
+    void deleteSupersivorById(int id);
     void deleteSupersivor(@Param("username") String username);  //删除宿管
     void updateSupersivor(Supervisor supersivor);  //更新宿管
 }

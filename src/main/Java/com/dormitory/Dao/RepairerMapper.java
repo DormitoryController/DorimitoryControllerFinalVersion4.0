@@ -15,7 +15,9 @@ public interface RepairerMapper {
     List<Repairer> selectAllRep();  //查询所有维修员
     List<Repairer> selectByTypeAndState(@Param("repairer_type") String repairer_type, @Param("state") String state);  //根据维修员类型和工作状态查询
     void insertReq(Repairer repairer);  //插入维修员信息
+    void deleteReqById(int id);
     void deleteReq(@Param("username") String username);  //删除维修员
     void updateReq(@Param("username") String username,@Param("state") String state);  //更新维修员信息
     List<Repairer> selectRepByState(@Param("repairer_state") String repairer_state);
+    int selectReqByName(String name);
 }
