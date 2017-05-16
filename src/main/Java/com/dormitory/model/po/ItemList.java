@@ -52,6 +52,14 @@ public class ItemList {
         this.item_num = item_num;
     }
 
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
     @Override
     public String toString() {
         return "ItemList{" +
