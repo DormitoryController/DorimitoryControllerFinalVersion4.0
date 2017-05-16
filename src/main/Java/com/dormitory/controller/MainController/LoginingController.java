@@ -115,6 +115,9 @@ public class LoginingController {
                     supervisor.setUsername(registerUsername);
                     supervisor.setPassword(registerPassword);
                     supervisorMapper.insertSupervisor(supervisor);
+                    Supervisor reSupervisor=supervisorMapper.selectSvByUsername(registerUsername);
+                    int unitId=reSupervisor.getId();
+                    checkcodeMapper.updateCheckcode(checkCode,unitId);
                     break;
                 }
                 if(userType.equals("维修员")) {
@@ -123,6 +126,9 @@ public class LoginingController {
                     repairer.setUsername(registerUsername);
                     repairer.setPassword(registerPassword);
                     repairerMapper.insertReq(repairer);
+                    Repairer reRepaier=repairerMapper.selectRepByUsername(registerUsername);
+                    int unitId=reRepaier.getId();
+                    checkcodeMapper.updateCheckcode(checkCode,unitId);
                     break;
                 }
 
@@ -149,7 +155,7 @@ public class LoginingController {
         List<Checkcode> checkcodeList=checkcodeMapper.selectAllCheckcode();
         for (Checkcode getCheckCode:checkcodeList){
            if(checkCode.equals(getCheckCode.getCheckcode())){
-               Long id=getCheckCode.getUser_id();
+               int id=getCheckCode.getUser_id();
                String userType=getCheckCode.getUser_type();
                String user_state=getCheckCode.getUse_state();
                if(user_state.equals("1")){
