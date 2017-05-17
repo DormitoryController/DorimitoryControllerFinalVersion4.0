@@ -16,8 +16,11 @@
     <title>updateInfoControl</title>
 
     <script>
+        function querySupervisorInfo() {
+            $("#div33").load("/DormManage/querySupervisorInfo")
+        }
         function updateInfo() {
-            $("#div3").load("http://localhost:8001/DormManage/updateInfo")
+            $("#div44").load("/DormManage/updateInfo")
         }
     </script>
 <body>
@@ -28,12 +31,18 @@
 <div class="table" >
     <ul class="nav nav-tabs" id="tabs-795090">
         <li>
-            <a href="#panel-453255" data-toggle="tab" class="btn-block btn-info" onclick="updateInfo()">个人信息</a>
+            <a href="#panel-453255" data-toggle="tab" class="btn-block btn-info" onclick="querySupervisorInfo()">个人信息</a>
+        </li>
+        <li class="active">
+            <a href="#panel-453266" data-toggle="tab" class="btn-block btn-info" onclick="updateInfo()">信息修改</a>
         </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="panel-453255">
-            <div id="div3"></div>
+            <div id="div33"></div>
+        </div>
+        <div class="tab-pane" id="panel-453266">
+            <div id="div44"></div>
         </div>
     </div>
 </div>

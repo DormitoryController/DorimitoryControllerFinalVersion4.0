@@ -24,6 +24,12 @@
     <mvc:default-servlet-handler/>
     <!-- 定义控制器类返回值处理 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/View/" p:suffix=".jsp"></bean>
-
+    <mvc:interceptors>
+        <mvc:interceptor>
+                     <!-- 拦截所有URL中包含/user/的请求 -->
+            <mvc:mapping path="/**"/>
+            <bean class="com.dormitory.controller.Filter.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>

@@ -100,21 +100,18 @@
                         </div>
                         <div id="panel-element-280717" class="panel-collapse collapse">
                             <div class="panel-body" onclick="maintenanceControl()">
-                                <a onclick="maintenanceControl()">维修表管理</a>
-                            </div>
-                            <div class="panel-body" onclick="maintenanceControl()">
-                                <a onclick="maintenanceControl()">维修员管理</a>
+                                <a onclick="maintenanceControl()">维修安排</a>
                             </div>
                         </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-195419"
-                               href="#panel-element-280722">信息管理</a>
+                               href="#panel-element-280722">个人中心</a>
                         </div>
                         <div id="panel-element-280722" class="panel-collapse collapse">
                             <div class="panel-body" onclick="updateInfoControl()">
-                                <a onclick="updateInfoControl()">信息管理</a>
+                                <a onclick="updateInfoControl()">个人信息</a>
                             </div>
                         </div>
                     </div>

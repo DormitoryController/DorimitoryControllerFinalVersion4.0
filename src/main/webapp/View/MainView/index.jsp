@@ -91,9 +91,6 @@
                         <div class="panel-body" onclick="maintenanceControl()">
                             <a onclick="maintenanceControl()">维修表管理</a>
                         </div>
-                        <div class="panel-body" onclick="maintenanceControl()"style="display: block">
-                            <a onclick="maintenanceControl()">维修员管理</a>
-                        </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
@@ -102,8 +99,8 @@
                            href="#panel-element-280722">信息管理</a>
                     </div>
                     <div id="panel-element-280722" class="panel-collapse collapse"style="display: block">
-                        <div class="panel-body">
-                            <a onclick="updateInfoControl()">信息管理</a>
+                        <div class="panel-body" onclick="updateInfoControl()">
+                            <a onclick="updateInfoControl()">个人信息</a>
                         </div>
                         <div class="panel-body" >
                             <a onclick="SuperMannagercheckOut()">退出登陆</a>

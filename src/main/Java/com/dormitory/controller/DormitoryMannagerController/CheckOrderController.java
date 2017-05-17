@@ -79,7 +79,7 @@ public class CheckOrderController {
         int id = Integer.parseInt(request.getParameter("id"));
         String repairerName = request.getParameter("name");
         Maintenance maintenance = maintenanceMapper.selectMaintenanceById(id);
-        System.out.println("维修表id:" + id + ";维修员:" + repairerName);
+//        System.out.println("维修表id:" + id + ";维修员:" + repairerName);
         maintenance.setId(id);
         maintenance.setFault_state(request.getParameter("fault_state"));
         maintenance.setRepairer_id(repairerMapper.selectReqByName(repairerName));

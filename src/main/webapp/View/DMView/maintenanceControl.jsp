@@ -17,10 +17,10 @@
 
     <script>
         function queryMaintenance() {
-            $("#div1").load("http://localhost:8001/DormManage/queryMaintenance")
+            $("#div11").load("http://localhost:8001/DormManage/queryMaintenance")
         }
         function queryRepairer() {
-            $("#div2").load("http://localhost:8001/DormManage/queryRepairer")
+            $("#div22").load("http://localhost:8001/DormManage/queryRepairer")
         }
     </script>
 <body>
@@ -39,10 +39,10 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="panel-453244">
-            <div id="div1"></div>
+            <div id="div11"></div>
         </div>
         <div class="tab-pane" id="panel-573910">
-            <div id="div2"></div>
+            <div id="div22"></div>
         </div>
     </div>
 </div>

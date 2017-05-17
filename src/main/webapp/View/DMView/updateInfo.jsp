@@ -1,7 +1,7 @@
 <%--
   Created by IntelliJ IDEA.
   User: 李朋辉
-  Date: 2017/5/3
+  Date: 2017/5/4
   Time: 23:09
   To change this template use File | Settings | File Templates.
 --%>
@@ -64,7 +64,7 @@
         },JSON)
     }
 </script>
-<div class="table-responsive">
+
 <table class="table table-hover">
     <thead>
     <tr style="background-color: #d0e9c6">
@@ -95,6 +95,6 @@
 
     </tbody>
 </table>
-</div>
+
 </body>
 </html>

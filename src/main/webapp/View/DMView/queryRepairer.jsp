@@ -25,7 +25,6 @@
         $.ajax({
             type: 'post',
             url: '/DormManage/repairerItems',
-
             success: function (data) {
                 $("#tbody").empty();
                 var result = eval("(" + data + ")");

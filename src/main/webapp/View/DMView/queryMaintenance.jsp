@@ -92,7 +92,7 @@
         <th class="text-center" width="70px">
             报修人
         </th>
-        <th class="text-center">
+        <th class="text-center" width="100px">
             报修时间
         </th>
         <th class="text-center">

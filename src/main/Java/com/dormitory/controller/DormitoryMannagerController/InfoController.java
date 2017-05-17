@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
@@ -35,12 +34,15 @@ public class InfoController {
         return "/DMView/updateInfo";
     }
 
+    @RequestMapping("/querySupervisorInfo")
+    public String querySupervisorInfo() throws Exception {
+        return "/DMView/querySupervisorInfo";
+    }
+
     @ResponseBody
     @RequestMapping(value = "/supervisorItems")
-    public void supervisorItems(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
-        String username=session.getAttribute("username").toString();
-        Supervisor supervisor = supervisorMapper.selectSvByUsername(username);
-        System.out.println(username);
+    public void supervisorItems(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Supervisor supervisor = supervisorMapper.selectSvByUsername("蔡阿姨");
 //        for(int i=0;i<supervisorList.size();i++){
 //            System.out.println(supervisorList.get(i).getUsername());
 //        }
@@ -60,16 +62,37 @@ public class InfoController {
     @RequestMapping(value = "/supervisorUpdate")
     public void supervisorUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String username = request.getParameter("username");
-
-        System.out.println("宿管昵称："+username);
+//        System.out.println("宿管昵称："+username);
         Supervisor supervisor = supervisorMapper.selectSvByUsername(username);
-        supervisor.setName(request.getParameter("name"));
-        supervisor.setSex(request.getParameter("sex"));
-        supervisor.setEmail(request.getParameter("email"));
-        supervisor.setTelephone(request.getParameter("telephone"));
-        supervisor.setOfficenum(request.getParameter("officenum"));
-        supervisorMapper.updateSupersivor(supervisor);
 
-        System.out.println("宿管办公室");
+//        System.out.println(supervisor.getName()+"123");
+        //从界面获取修改信息
+        String svName = request.getParameter("name");
+        String svSex = request.getParameter("sex");
+        String svEmail = request.getParameter("email");
+        String svTelephone = request.getParameter("telephone");
+        String svOfficeNum = request.getParameter("officenum");
+
+        //判断是否为空
+        if (svName != "") {
+            supervisor.setName(svName);
+        } else supervisor.setName(supervisor.getName());
+
+//        System.out.println(supervisor.getName()+"456");
+
+        if (svSex != "") {
+            supervisor.setSex(svSex);
+        } else supervisor.setSex(supervisor.getSex());
+        if (svEmail != "") {
+            supervisor.setEmail(svEmail);
+        } else supervisor.setEmail(supervisor.getEmail());
+        if (svTelephone != "") {
+            supervisor.setTelephone(svTelephone);
+        } else supervisor.setTelephone(supervisor.getTelephone());
+        if (svOfficeNum != "") {
+            supervisor.setOfficenum(svOfficeNum);
+        } else supervisor.setOfficenum(supervisor.getOfficenum());
+
+        supervisorMapper.updateSupersivor(supervisor);
     }
 }
