@@ -109,38 +109,54 @@
               <th>
                   故障描述：
               </th>
+              <th>
+                  <p style="color:blue;word-wrap:break-word;word-break:break-all;" id="maintananceDetail" >
+                  </p>
+              </th>
+          </tr>
+          <tr>
+              <th>
+                  维修回执：
+              </th>
+              <th>
+                  <p style="color:blue;word-wrap:break-word;word-break:break-all;" id="rewordDetail">
+                  </p>
+              </th>
           </tr>
     </tbody>
 </table>
-<table>
-    <tr>
-        <th>
-            <p style="color:royalblue;word-wrap:break-word;word-break:break-all;" id="maintananceDetail" >
-            </p>
-        </th>
-    </tr>
-</table>
-<table>
-    <tr>
-        <th>
-            维修回执：
-        </th>
-    </tr>
-</table>
-<table>
-    <tbody>
-    <tr>
-        <th>
-            <p style="color:blue;word-wrap:break-word;word-break:break-all;" id="rewordDetail">
-            </p>
-        </th>
-    </tr>
-    </tbody>
-</table>
-</body>
-<table>
+<%--<table>--%>
+    <%--<tr>--%>
+        <%--<th>--%>
+            <%--<p style="color:royalblue;word-wrap:break-word;word-break:break-all;" id="maintananceDetail" >--%>
+            <%--</p>--%>
+        <%--</th>--%>
+    <%--</tr>--%>
+<%--</table>--%>
+<%--<table class="table">--%>
+    <%--<tr>--%>
+        <%--<th>--%>
+            <%--维修回执：--%>
+        <%--</th>--%>
+        <%--<th>--%>
+            <%--<p style="color:blue;word-wrap:break-word;word-break:break-all;" id="rewordDetail">--%>
+            <%--</p>--%>
+        <%--</th>--%>
+    <%--</tr>--%>
+<%--</table>--%>
+<%--<table>--%>
+    <%--<tbody>--%>
+    <%--<tr>--%>
+        <%--<th>--%>
+            <%--<p style="color:blue;word-wrap:break-word;word-break:break-all;" id="rewordDetail">--%>
+            <%--</p>--%>
+        <%--</th>--%>
+    <%--</tr>--%>
+    <%--</tbody>--%>
+<%--</table>--%>
+<table class="table">
     <thead>
-    <tr>
+    <tr >
         <th>
             维修零件清单:
         </th>
@@ -157,4 +173,5 @@
     </tr>
     </tfoot>
 </table>
+</body>
 </html>

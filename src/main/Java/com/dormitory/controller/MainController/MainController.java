@@ -245,7 +245,7 @@ public class MainController {
         String[] pricelist=request.getParameterValues("pricelist[]");
         for(int i=0;i<itemlist.length;i++){
             Item items=itemMapper.selectItemByName(itemlist[i]);
-            itemMapper.updateItem(itemlist[i],items.getRepertory()+Integer.valueOf(numlist[i]));
+            itemMapper.updateItem(itemlist[i],"￥"+pricelist[i],items.getRepertory()+Integer.valueOf(numlist[i]));
         }
     }
     @RequestMapping(value = "/reduceItem")
@@ -254,7 +254,12 @@ public class MainController {
         String[] itemlist=request.getParameterValues("itemlist[]");
         for(int i=0;i<itemlist.length;i++){
              Item items=itemMapper.selectItemByName(itemlist[i]);
-             itemMapper.updateItem(itemlist[i],items.getRepertory()-Integer.valueOf(numlist[i]));
+             if(items.getRepertory()-Integer.valueOf(numlist[i])>0) {
+                 itemMapper.updateItem(itemlist[i], items.getPrice(), items.getRepertory() - Integer.valueOf(numlist[i]));
+             }
+             else {
+                 itemMapper.updateItem(itemlist[i], items.getPrice(), 0);
+             }
         }
     }
 

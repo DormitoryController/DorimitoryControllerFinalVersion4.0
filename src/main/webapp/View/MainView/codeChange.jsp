@@ -64,7 +64,7 @@
                         var usernameCheck = result.usernameCheck;
                         if (usernameCheck == "false") {
                             $("#checkResult").empty()
-                            $("#checkResult").append("<font color='green'><p id='checkCor1'>无效的用户名</p></font>")
+                            $("#checkResult").append("<font color='green'><p id='checkCor1'></p></font>")
                             checkNumber=1;
                         }
                         else {

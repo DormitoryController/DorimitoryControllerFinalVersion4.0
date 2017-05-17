@@ -107,7 +107,7 @@
                     numlist.push(txt3)
                 }
                 else {
-                    alert("请输入价格或数量")
+                    alert("请输入耗材数量")
                     addCheck=1;
                     break
                 }

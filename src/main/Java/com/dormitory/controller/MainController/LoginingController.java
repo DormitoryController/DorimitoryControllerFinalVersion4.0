@@ -43,28 +43,37 @@ public class LoginingController {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         JSONObject jsonObject = new JSONObject();
-        if(!password.equals("")&&password.equals(studentMapper.selectStuByUsername(username).getPassword())){
-            jsonObject.put("loginCheck","true");
-            jsonObject.put("userType","学生");
-            session.setAttribute("username",username);
-            session.setAttribute("password",password);
+        String loginCheck="false";
+        System.out.println("come here");
+        if(!password.equals("")) {
+            if (studentMapper.selectStuByUsername(username) != null) {
+                if (password.equals(studentMapper.selectStuByUsername(username).getPassword())) {
+                    loginCheck="true";
+                    jsonObject.put("userType", "学生");
+                    session.setAttribute("username", username);
+                    session.setAttribute("password", password);
+                }
+            }
+            if (repairerMapper.selectRepByUsername(username) != null) {
+                if (password.equals(repairerMapper.selectRepByUsername(username).getPassword())) {
+                    loginCheck="true";
+                    jsonObject.put("userType", "维修员");
+                    session.setAttribute("username", username);
+                    session.setAttribute("password", password);
+                    repairerMapper.updateReq(username, "上班");
+                }
+            }
+            if (supervisorMapper.selectSvByUsername(username) != null) {
+                if (password.equals(supervisorMapper.selectSvByUsername(username).getPassword())) {
+                    loginCheck="true";
+                    jsonObject.put("userType", "宿舍管理员");
+                    session.setAttribute("username", username);
+                    session.setAttribute("password", password);
+                }
+            }
+
         }
-        if(!password.equals("")&&password.equals(repairerMapper.selectRepByUsername(username).getPassword())){
-            jsonObject.put("loginCheck","true");
-            jsonObject.put("userType","维修员");
-            session.setAttribute("username",username);
-            session.setAttribute("password",password);
-            repairerMapper.updateReq(username,"上班");
-        }
-        if(!password.equals("")&&password.equals(supervisorMapper.selectSvByUsername(username).getPassword())){
-            jsonObject.put("loginCheck","true");
-            jsonObject.put("userType","宿舍管理员");
-            session.setAttribute("username",username);
-            session.setAttribute("password",password);
-        }
-        else {
-            jsonObject.put("loginCheck","false");
-        }
+        jsonObject.put("loginCheck",loginCheck);
         System.out.println(jsonObject.toString());
         response.setHeader("content-type", "text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -100,7 +109,7 @@ public class LoginingController {
         String checkCode=request.getParameter("checkCode");
         String userType=request.getParameter("userType");
         String registerCheck="false";
-        List<Checkcode> checkcodeList=checkcodeMapper.selectCheckcodeByStateAndUserType(userType);
+        List<Checkcode> checkcodeList=checkcodeMapper.selectCheckcodeWhenRegister(userType);
         for(Checkcode getcheckcode:checkcodeList){
             if(checkCode.equals(getcheckcode.getCheckcode())){
                 int id=getcheckcode.getId();

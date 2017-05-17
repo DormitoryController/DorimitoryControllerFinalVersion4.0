@@ -24,7 +24,7 @@
                 var repairerlist = result.repairerlist;
                 var maintenanceslist=result.maintenanceslist;
                 for (var i in maintenanceslist) {
-                    var txt = "<tr><th>" + maintenanceslist[i].id+"</th><th>" + repairerlist[i].name+"</th><th>"+result.date[i]+"</th><th><a onclick='maintenancesDetail("+maintenanceslist[i].id+")'>查看详情</th></tr>"
+                    var txt = "<tr><th>" + maintenanceslist[i].id+"</th><th>" + repairerlist[i].name+"</th><th>"+result.datelist[i]+"</th><th><a onclick='maintenancesDetail("+maintenanceslist[i].id+")'>查看详情</th></tr>"
                     $("#rewordBody").append(txt);
                 }
             },
@@ -44,7 +44,7 @@
                 if(maintenanceslist[0]!=null) {
                     $("#rewordBody").empty();
                     for (var i in maintenanceslist) {
-                        var txt = "<tr><th>" + maintenanceslist[i].id+"</th><th>" + repairerlist[i].name+"</th><th>"+result.date[i]+"</th><th><a onclick='maintenancesDetail("+maintenanceslist[i].id+")'>查看详情</th></tr>"
+                        var txt = "<tr><th>" + maintenanceslist[i].id+"</th><th>" + repairerlist[i].name+"</th><th>"+result.datelist[i]+"</th><th><a onclick='maintenancesDetail("+maintenanceslist[i].id+")'>查看详情</th></tr>"
                         $("#rewordBody").append(txt);
                     }
                     if(index>1){
@@ -101,7 +101,7 @@
                     if(maintenanceslist[0]!=null) {
                         $("#rewordBody").empty();
                         for (var i in maintenanceslist) {
-                            var txt = "<tr><th>" + maintenanceslist[i].id+"</th><th>" + repairerlist[i].name+"</th><th>"+result.date[i]+"</th><th><a onclick='maintenancesDetail("+maintenanceslist[i].id+")'>查看详情</th></tr>"
+                            var txt = "<tr><th>" + maintenanceslist[i].id+"</th><th>" + repairerlist[i].name+"</th><th>"+result.datelist[i]+"</th><th><a onclick='maintenancesDetail("+maintenanceslist[i].id+")'>查看详情</th></tr>"
                             $("#rewordBody").append(txt);
                         }
                         if(index>1){
@@ -157,7 +157,7 @@
                 if (maintenanceslist [0]!=null) {
                     $("#rewordBody").empty();
                     for (var i in maintenanceslist) {
-                        var txt = "<tr><th>" + maintenanceslist[i].id+"</th><th>" + repairerlist[i].name+"</th><th>"+result.date[i]+"</th><th><a onclick='maintenancesDetail("+maintenanceslist[i].id+")'>查看详情</th></tr>"
+                        var txt = "<tr><th>" + maintenanceslist[i].id+"</th><th>" + repairerlist[i].name+"</th><th>"+result.datelist[i]+"</th><th><a onclick='maintenancesDetail("+maintenanceslist[i].id+")'>查看详情</th></tr>"
                         $("#rewordBody").append(txt);
                     }
                     if(index>1){

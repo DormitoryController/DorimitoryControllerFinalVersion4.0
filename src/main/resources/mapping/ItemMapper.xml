@@ -10,7 +10,7 @@
     </insert>
 
     <select id="updateItem" >
-        UPDATE items SET repertory=repertory-#{item_num} WHERE name=#{item_name}
+        UPDATE items SET repertory=#{item_num},price=#{item_price} WHERE name=#{item_name}
     </select>
 
     <select id="selectAllItem" resultType="com.dormitory.model.po.Item">
