@@ -54,6 +54,7 @@ public class LoginingController {
             jsonObject.put("userType","维修员");
             session.setAttribute("username",username);
             session.setAttribute("password",password);
+            repairerMapper.updateReq(username,"上班");
         }
         if(!password.equals("")&&password.equals(supervisorMapper.selectSvByUsername(username).getPassword())){
             jsonObject.put("loginCheck","true");
