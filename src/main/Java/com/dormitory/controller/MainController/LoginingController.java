@@ -50,7 +50,6 @@ public class LoginingController {
                     loginCheck="true";
                     jsonObject.put("userType", "学生");
                     session.setAttribute("username", username);
-                    session.setAttribute("password", password);
                 }
             }
             if (repairerMapper.selectRepByUsername(username) != null) {
@@ -58,7 +57,6 @@ public class LoginingController {
                     loginCheck="true";
                     jsonObject.put("userType", "维修员");
                     session.setAttribute("username", username);
-                    session.setAttribute("password", password);
                     repairerMapper.updateReq(username, "上班");
                 }
             }
@@ -67,7 +65,6 @@ public class LoginingController {
                     loginCheck="true";
                     jsonObject.put("userType", "宿舍管理员");
                     session.setAttribute("username", username);
-                    session.setAttribute("password", password);
                 }
             }
             if (superAdminMapper.selectSuperAdminByUsername(username) != null) {
@@ -75,7 +72,6 @@ public class LoginingController {
                     loginCheck="true";
                     jsonObject.put("userType", "超级管理员");
                     session.setAttribute("username", username);
-                    session.setAttribute("password", password);
                 }
             }
 
