@@ -35,16 +35,16 @@ public class StudentMapperTest {
     public void selectStuById() throws Exception {
         SqlSession sqlSession=sqlSessionFactory.openSession();
         StudentMapper studentMapper=sqlSession.getMapper(StudentMapper.class);
-        Student student=studentMapper.selectStuById(3116370112L);
+        Student student=studentMapper.selectStuById(1);
         System.out.println(student);
         sqlSession.close();
     }
 
     @Test
-    public void selectStuByName() throws Exception {
+    public void selectStuByUsername() throws Exception {
         SqlSession sqlSession=sqlSessionFactory.openSession();
         StudentMapper studentMapper=sqlSession.getMapper(StudentMapper.class);
-        Student student=studentMapper.selectStuByName("王家辉");
+        Student student=studentMapper.selectStuByUsername("王八");
         System.out.println(student);
         sqlSession.close();
 
@@ -64,12 +64,12 @@ public class StudentMapperTest {
         SqlSession sqlSession=sqlSessionFactory.openSession();
         StudentMapper studentMapper=sqlSession.getMapper(StudentMapper.class);
         Student student=new Student();
-        student.setId(3116370114L);
+        student.setUsername("乔疯");
         student.setName("乔治");
         student.setSex("女");
         student.setFlatnum("公寓楼B座");
         student.setDormnum("415室");
-        student.setPasswd("123");
+        student.setPassword("123");
         studentMapper.insertStudent(student);
         sqlSession.commit();
         sqlSession.close();
@@ -80,7 +80,7 @@ public class StudentMapperTest {
     public void deleteStudent() throws Exception {
         SqlSession sqlSession=sqlSessionFactory.openSession();
         StudentMapper studentMapper=sqlSession.getMapper(StudentMapper.class);
-        studentMapper.deleteStudent(3116370114L);
+        studentMapper.deleteStudent("乔疯");
         sqlSession.commit();
         sqlSession.close();
     }
@@ -90,11 +90,20 @@ public class StudentMapperTest {
         SqlSession sqlSession=sqlSessionFactory.openSession();
         StudentMapper studentMapper=sqlSession.getMapper(StudentMapper.class);
         Student student=new Student();
+        student.setUsername("乔疯");
         student.setName("巨根乔");
         student.setFlatnum("在天上");
-        student.setId(3116370114L);
         studentMapper.updateStudent(student);
         sqlSession.commit();
+        sqlSession.close();
+    }
+
+    @Test
+    public void selectStuIDByUsername() throws Exception {
+        SqlSession sqlSession=sqlSessionFactory.openSession();
+        StudentMapper studentMapper=sqlSession.getMapper(StudentMapper.class);
+        Integer SID=studentMapper.selectStuIDByUsername("王八");
+        System.out.println(SID);
         sqlSession.close();
     }
 

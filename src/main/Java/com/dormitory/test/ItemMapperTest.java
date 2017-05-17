@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * Created by war on 2017/5/7.
@@ -59,6 +60,15 @@ public class ItemMapperTest {
         itemMapper.updateItem("水龙头",2);
         sqlSession.commit();
         sqlSession.close();
+    }
+
+    @Test
+    public void selectAllItem() throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ItemMapper itemMapper=sqlSession.getMapper(ItemMapper.class);
+        List<Item> item=itemMapper.selectAllItem();
+        System.out.println(item);
+
     }
 
 }

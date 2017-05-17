@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.InputStream;
 import java.util.Date;
@@ -17,6 +19,7 @@ import java.util.List;
  * Created by war on 2017/5/7.
  */
 public class MaintenanceMapperTest {
+    private ApplicationContext applicationContext;
     private SqlSessionFactory sqlSessionFactory;
     @Before
     public void setUp() throws Exception {
@@ -30,6 +33,8 @@ public class MaintenanceMapperTest {
         // 创建会话工厂，传入mybatis的配置文件信息
         sqlSessionFactory = new SqlSessionFactoryBuilder()
                 .build(inputStream);
+
+        applicationContext=new ClassPathXmlApplicationContext("applicationContext.xml");
     }
 
     @Test
@@ -55,7 +60,7 @@ public class MaintenanceMapperTest {
     public void selectMaintenanceByRep() throws Exception {
         SqlSession sqlSession=sqlSessionFactory.openSession();
         MaintenanceMapper maintenanceMapper=sqlSession.getMapper(MaintenanceMapper.class);
-        List<Maintenance> list=maintenanceMapper.selectMaintenanceByRep("小迟师傅");
+        List<Maintenance> list=maintenanceMapper.selectMaintenanceByRep("赵师傅");
         System.out.println(list);
         sqlSession.close();
     }
@@ -83,7 +88,7 @@ public class MaintenanceMapperTest {
         SqlSession sqlSession=sqlSessionFactory.openSession();
         MaintenanceMapper maintenanceMapper=sqlSession.getMapper(MaintenanceMapper.class);
         Maintenance maintenance=new Maintenance();
-        maintenance.setStudent_id(3116370112L);
+
         maintenance.setFault_type("热水器故障");
         maintenance.setFault_detail("淋浴头出现裂缝，疯狂喷水");
         Date date=new Date();
@@ -100,10 +105,10 @@ public class MaintenanceMapperTest {
         SqlSession sqlSession=sqlSessionFactory.openSession();
         MaintenanceMapper maintenanceMapper=sqlSession.getMapper(MaintenanceMapper.class);
         Maintenance maintenance=new Maintenance();
-        maintenance.setSupervisor_id(1002);
-        maintenance.setRepairer_id(103);
+        maintenance.setSupervisor_id(1);
+        maintenance.setRepairer_id(3);
         maintenance.setRepairer_type("水工");
-        maintenance.setId(5);
+        maintenance.setId(7);
         maintenance.setFault_state("已审核");
         maintenanceMapper.updateAllocate(maintenance);
         sqlSession.commit();
@@ -117,9 +122,7 @@ public class MaintenanceMapperTest {
         Maintenance maintenance=new Maintenance();
         maintenance.setFault_analysis("淋浴头质量问题");
         maintenance.setFault_state("修复");
-        maintenance.setItem_id(2);
-        maintenance.setItem_num(1);
-        maintenance.setId(5);
+        maintenance.setId(7);
         Date date=new Date();
         maintenance.setResponse_time(date);
         maintenanceMapper.updateResponse(maintenance);
@@ -145,6 +148,31 @@ public class MaintenanceMapperTest {
     public void deleteMaintenance() throws Exception {
         SqlSession sqlSession=sqlSessionFactory.openSession();
         MaintenanceMapper maintenanceMapper=sqlSession.getMapper(MaintenanceMapper.class);
+    }
+
+    @Test
+    public void selectReform() throws Exception {
+        MaintenanceMapper maintenanceMapper=(MaintenanceMapper) applicationContext.getBean("maintenanceMapper");
+        List<Maintenance> list=maintenanceMapper.selectReform("王八");
+        System.out.println(list);
+
+    }
+
+    @Test
+    public void selectMaintenanceByStuUsername() throws Exception {
+        SqlSession sqlSession=sqlSessionFactory.openSession();
+        MaintenanceMapper maintenanceMapper=sqlSession.getMapper(MaintenanceMapper.class);
+        List<Maintenance> list=maintenanceMapper.selectMaintenanceByStuUsername("王八");
+        System.out.println(list);
+        sqlSession.close();
+    }
+
+    @Test
+    public void updateMaintenanceState() throws Exception {
+        SqlSession sqlSession=sqlSessionFactory.openSession();
+        MaintenanceMapper maintenanceMapper=sqlSession.getMapper(MaintenanceMapper.class);
+        maintenanceMapper.updateMaintenanceState(7);
+        sqlSession.commit();
     }
 
 }

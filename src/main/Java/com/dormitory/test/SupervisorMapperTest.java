@@ -41,10 +41,10 @@ public class SupervisorMapperTest {
     }
 
     @Test
-    public void selectSvByName() throws Exception {
+    public void selectSvByUsername() throws Exception {
         SqlSession sqlSession=sqlSessionFactory.openSession();
         SupervisorMapper supervisorMapper=sqlSession.getMapper(SupervisorMapper.class);
-        Supervisor supervisor=supervisorMapper.selectSvByName("蔡阿姨");
+        Supervisor supervisor=supervisorMapper.selectSvByUsername("许阿姨");
         System.out.println(supervisor);
         sqlSession.close();
     }
@@ -63,9 +63,9 @@ public class SupervisorMapperTest {
         SqlSession sqlSession=sqlSessionFactory.openSession();
         SupervisorMapper supervisorMapper=sqlSession.getMapper(SupervisorMapper.class);
         Supervisor supervisor=new Supervisor();
-        supervisor.setId(1234);
+        supervisor.setUsername("ahahah");
         supervisor.setName("哈皮");
-        supervisor.setPasswd("123");
+        supervisor.setPassword("123");
         supervisor.setOfficenum("公寓楼B座101室");
         supervisorMapper.insertSupervisor(supervisor);
         sqlSession.commit();
@@ -76,7 +76,7 @@ public class SupervisorMapperTest {
     public void deleteSupersivor() throws Exception {
         SqlSession sqlSession=sqlSessionFactory.openSession();
         SupervisorMapper supervisorMapper=sqlSession.getMapper(SupervisorMapper.class);
-        supervisorMapper.deleteSupersivor(1234);
+        supervisorMapper.deleteSupersivor("ahahah");
         sqlSession.commit();
         sqlSession.close();
     }
@@ -86,9 +86,9 @@ public class SupervisorMapperTest {
         SqlSession sqlSession=sqlSessionFactory.openSession();
         SupervisorMapper supervisorMapper=sqlSession.getMapper(SupervisorMapper.class);
         Supervisor supervisor=new Supervisor();
-        supervisor.setId(1234);
+        supervisor.setUsername("ahaha");
         supervisor.setName("我是哈珀");
-        supervisor.setPasswd("789");
+        supervisor.setPassword("789");
         supervisorMapper.updateSupersivor(supervisor);
         sqlSession.commit();
         sqlSession.close();

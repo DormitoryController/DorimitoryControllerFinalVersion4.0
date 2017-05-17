@@ -40,10 +40,10 @@ public class SuperAdminMapperTest {
     }
 
     @Test
-    public void selectSuperAdminByName() throws Exception {
+    public void selectSuperAdminByUsername() throws Exception {
         SqlSession sqlSession=sqlSessionFactory.openSession();
         SuperAdminMapper superAdminMapper=sqlSession.getMapper(SuperAdminMapper.class);
-        SuperAdmin superAdmin=superAdminMapper.selectSuperAdminByName("赵瑾");
+        SuperAdmin superAdmin=superAdminMapper.selectSuperAdminByUsername("赵瑾");
         System.out.println(superAdmin);
         sqlSession.close();
     }
@@ -53,9 +53,9 @@ public class SuperAdminMapperTest {
         SqlSession sqlSession=sqlSessionFactory.openSession();
         SuperAdminMapper superAdminMapper=sqlSession.getMapper(SuperAdminMapper.class);
         SuperAdmin superAdmin=new SuperAdmin();
-        superAdmin.setId(1036);
+        superAdmin.setUsername("meng");
         superAdmin.setName("孟艳丽");
-        superAdmin.setPasswd("123");
+        superAdmin.setPassword("123");
         superAdminMapper.insertSuperAdmin(superAdmin);
         sqlSession.commit();
         sqlSession.close();
