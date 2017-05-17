@@ -28,7 +28,7 @@
     </delete>
 
         <update id="updateSupersivor" parameterType="com.dormitory.model.po.Supervisor">
-              UPDATE supervisors SET name=#{name},password=#{password},telephone=#{telephone},email=#{email},officenum=#{officenum}
+              UPDATE supervisors SET name=#{name},password=#{password},telephone=#{telephone},email=#{email},officenum=#{officenum},sex=#{sex}
               WHERE username=#{username}
         </update>
 

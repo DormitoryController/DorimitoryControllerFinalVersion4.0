@@ -26,6 +26,23 @@
         $("#repositoryControl").load("/MainController/reword")
 
     }
+    function maintenanceControl() {
+        $("#repositoryControl").load("/DormManage/maintenanceControl")
+    }
+    function updateInfoControl() {
+        $("#repositoryControl").load("/DormManage/updateInfoControl")
+    }
+    function SuperMannagercheckOut() {
+        $.ajax({
+            type: 'post',
+            url: '/MainController/checkOut',
+            data: {},
+            success: function (data) {
+                alert("您已退出登录")
+               location.href="/LoginingController/"
+            },
+        }, JSON)
+    }
 </script>
 </head>
 <style>body {
@@ -65,8 +82,36 @@
                         </div>
                     </div>
                 </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-195419"
+                           href="#panel-element-280717">维修管理</a>
+                    </div>
+                    <div id="panel-element-280717" class="panel-collapse collapse"style="display: block">
+                        <div class="panel-body" onclick="maintenanceControl()">
+                            <a onclick="maintenanceControl()">维修表管理</a>
+                        </div>
+                        <div class="panel-body" onclick="maintenanceControl()"style="display: block">
+                            <a onclick="maintenanceControl()">维修员管理</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="panel-title collapsed" data-toggle="collapse"style="display: block" data-parent="#panel-195419"
+                           href="#panel-element-280722">信息管理</a>
+                    </div>
+                    <div id="panel-element-280722" class="panel-collapse collapse"style="display: block">
+                        <div class="panel-body">
+                            <a onclick="updateInfoControl()">信息管理</a>
+                        </div>
+                        <div class="panel-body" >
+                            <a onclick="SuperMannagercheckOut()">退出登陆</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-              <div class="col-md-6 column" >
+              <div class="col-md-9 column" >
                   <div id="repositoryControl" ></div>
               </div>
         </div>

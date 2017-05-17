@@ -25,4 +25,5 @@
     <!-- 定义控制器类返回值处理 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/View/" p:suffix=".jsp"></bean>
 
+
 </beans>

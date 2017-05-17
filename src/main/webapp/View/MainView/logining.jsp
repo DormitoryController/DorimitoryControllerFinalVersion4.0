@@ -58,13 +58,16 @@
                     var userType=result.userType;
                     if(status=="true"){
                         if(userType=="学生"){
-                            location.href="/MainController/"
+                            location.href="/StudentView/"
                         }
                         if(userType=="宿舍管理员"){
                             location.href="/MainController/"
                         }
                         if(userType=="维修员"){
-                            location.href="/MainController/"
+                            location.href="/workerHandleController/"
+                        }
+                        if(userType=="超级管理员"){
+                            location.href="/SuperMannagerController/"
                         }
                     }
                     else if(status=="false"){

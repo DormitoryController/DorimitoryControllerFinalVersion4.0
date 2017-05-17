@@ -39,6 +39,16 @@ public class MainController {
     @Autowired
     private ItemListMapper itemListMapper;
 
+    private Repairer repairerBuffer;
+
+    public Repairer getRepairerBuffer() {
+        return repairerBuffer;
+    }
+
+    public void setRepairerBuffer(Repairer repairerBuffer) {
+        this.repairerBuffer = repairerBuffer;
+    }
+
     public int getMaintenaceId() {
         return maintenaceId;
     }
@@ -121,19 +131,6 @@ public class MainController {
     @ResponseBody
     @RequestMapping(value = "/repositoryItem")
     public void repositoryItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        List<Item> itemslist = new LinkedList<Item>();
-//        Item item = new Item();
-//        item.setName("螺丝");
-//        item.setPrice("99");
-//        itemslist.add(item);
-//        Item item1 = new Item();
-//        item1.setPrice("11");
-//        item1.setName("龙头");
-//        itemslist.add(item1);
-//        Item item2 = new Item();
-//        item.setPrice("55");
-//        item2.setName("点灯");
-//        itemslist.add(item2);
         List<Item> itemslist=itemMapper.selectAllItem();
         response.setHeader("content-type", "text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -161,8 +158,21 @@ public class MainController {
         List<String> dateList=new LinkedList<String>();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         for(Maintenance maintenance:maintenanceslist){
-            repairerlist.add(repairerMapper.selectRepById(maintenance.getRepairer_id()));
-            dateList.add(sdf.format(maintenance.getResponse_time()));
+             Repairer repairer=repairerMapper.selectRepById(maintenance.getRepairer_id());
+                if(repairer!=null) {
+                    repairer.setPassword("");
+                    repairerlist.add(repairer);
+                }
+                else{
+                    repairerlist.add(null);
+                }
+                if(maintenance.getResponse_time()!=null) {
+                    dateList.add(sdf.format(maintenance.getResponse_time()));
+                }
+                else {
+                    dateList.add("尚未维修");
+                }
+
         }
         List<Maintenance> reMainList=new LinkedList<Maintenance>();
         List<Repairer> reRepairerList=new LinkedList<Repairer>();
@@ -203,29 +213,25 @@ public class MainController {
          List<Integer> itemNumList=new LinkedList<Integer>();
         Maintenance maintenance=maintenanceMapper.selectMaintenanceById(maintenaceId);
          mainList.add(maintenance);
-         replist.add(repairerMapper.selectRepById(maintenance.getRepairer_id()));
-         studentList.add(studentMapper.selectStuById(maintenance.getStudent_id()));
+         Repairer repairer=repairerMapper.selectRepById(maintenance.getRepairer_id());
+         if(repairer!=null) {
+             repairer.setPassword("");
+             replist.add(repairer);
+         }
+         else
+         {
+             replist.add(null);
+         }
+         Student student=studentMapper.selectStuById(maintenance.getStudent_id());
+         if(student!=null) {
+             student.setPassword("");
+             studentList.add(student);
+         }
          List<ItemList> itemListList=itemListMapper.selectItemListByMaintenance(maintenaceId);
          for(ItemList itemList:itemListList){
              itemNumList.add(itemList.getItem_num());
              itemNameList.add(itemList.getItem().getName());
          }
-//         Repairer repairer=new Repairer();
-//         repairer.setTelephone("1444444444444444444");
-//         repairer.setName("王力");
-//         Maintenance maintenance=new Maintenance();
-//         maintenance.setFault_detail("马桶坏了sadddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-//         maintenance.setFault_analysis("换个马桶dsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-//         replist.add(repairer);
-//         mainList.add(maintenance);
-//         Student student=new Student();
-//         student.setName("王力");
-//         student.setDormnum("第二公寓");
-//         studentList.add(student);
-//         itemNameList.add("龙头");
-//         itemNumList.add(1);
-//         itemNameList.add("水管");
-//         itemNumList.add(8);
         jsonObject.put("maintenanceId",maintenaceId);
          jsonObject.put("replist",replist);
          jsonObject.put("mainlist",mainList);
@@ -261,6 +267,18 @@ public class MainController {
                  itemMapper.updateItem(itemlist[i], items.getPrice(), 0);
              }
         }
+    }
+    @RequestMapping(value = "/checkOut")
+    public void checkOut(HttpSession session,HttpServletResponse response)throws Exception{
+        session.invalidate();
+        JSONObject jsonObject=new JSONObject();
+        System.out.println("come here");
+        response.setHeader("content-type", "text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        jsonObject.put("checkCode","true");
+        out.print(jsonObject.toString());
+        out.flush();
+        out.close();
     }
 
 }

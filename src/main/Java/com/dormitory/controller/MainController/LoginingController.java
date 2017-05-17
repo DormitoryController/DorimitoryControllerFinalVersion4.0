@@ -1,9 +1,6 @@
 package com.dormitory.controller.MainController;
 
-import com.dormitory.Dao.CheckcodeMapper;
-import com.dormitory.Dao.RepairerMapper;
-import com.dormitory.Dao.StudentMapper;
-import com.dormitory.Dao.SupervisorMapper;
+import com.dormitory.Dao.*;
 import com.dormitory.model.po.Checkcode;
 import com.dormitory.model.po.Repairer;
 import com.dormitory.model.po.Student;
@@ -34,6 +31,8 @@ public class LoginingController {
     private SupervisorMapper supervisorMapper;
     @Autowired
     private CheckcodeMapper checkcodeMapper;
+    @Autowired
+    private SuperAdminMapper superAdminMapper;
     @RequestMapping(value = "/")
     public String Logining(HttpServletRequest request, HttpServletResponse response) throws Exception {
         return "MainView/logining";
@@ -67,6 +66,14 @@ public class LoginingController {
                 if (password.equals(supervisorMapper.selectSvByUsername(username).getPassword())) {
                     loginCheck="true";
                     jsonObject.put("userType", "宿舍管理员");
+                    session.setAttribute("username", username);
+                    session.setAttribute("password", password);
+                }
+            }
+            if (superAdminMapper.selectSuperAdminByUsername(username) != null) {
+                if (password.equals(superAdminMapper.selectSuperAdminByUsername(username).getPassword())) {
+                    loginCheck="true";
+                    jsonObject.put("userType", "超级管理员");
                     session.setAttribute("username", username);
                     session.setAttribute("password", password);
                 }
