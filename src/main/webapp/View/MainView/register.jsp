@@ -21,31 +21,32 @@
         window.close();
     }
     function registerSubmit() {
-         var registerPassword=$("#registerPassword").val();
-         var registerUsername=$("#registerUsername").val();
-         var registerPasswordCheck=$("#registerPasswordCheck").val();
-         var checkCode=$("#checkCode").val();
-         if(registerPassword!=""&&registerUsername!=""&&registerPasswordCheck!=""&&checkCode!=""&&checkNumber==0){
-             $.ajax({
-                 type:'post',
-                 url:'/LoginingController/checkRegister',
-                 data:{registerUsername:registerUsername,registerPassword:registerPassword,checkCode:checkCode},
-                 success: function (data) {
-                     var result = eval("(" + data + ")");
-                     var status=result.registerCheck;
-                     if(status=="true"){
-                         alert("注册成功")
-                         window.close();
-                     }
-                     else if(status=="false"){
-                         alert("请输入正确的激活码")
-                     }
-                 },
-             },JSON)
-         }
-         else {
-             alert("请完善信息")
-         }
+        var registerPassword=$("#registerPassword").val();
+        var registerUsername=$("#registerUsername").val();
+        var registerPasswordCheck=$("#registerPasswordCheck").val();
+        var userType=$("#userType").val();
+        var checkCode=$("#checkCode").val();
+        if(registerPassword!=""&&registerUsername!=""&&registerPasswordCheck!=""&&checkCode!=""&&checkNumber==0){
+            $.ajax({
+                type:'post',
+                url:'/LoginingController/checkRegister',
+                data:{registerUsername:registerUsername,registerPassword:registerPassword,checkCode:checkCode,userType:userType},
+                success: function (data) {
+                    var result = eval("(" + data + ")");
+                    var status=result.registerCheck;
+                    if(status=="true"){
+                        alert("注册成功")
+                        window.close();
+                    }
+                    else if(status=="false"){
+                        alert("请输入正确的激活码")
+                    }
+                },
+            },JSON)
+        }
+        else {
+            alert("请完善信息")
+        }
     }
     $(document).ready (function registerCheck() {
         $("#registerUsername").focus(function checkResult() {
@@ -91,9 +92,9 @@
             $("#passwordCheckResult").empty();
         })
         $("#registerPassword").blur(function test(){
-           var registerPassword=$("#registerPassword").val()
+            var registerPassword=$("#registerPassword").val()
             if(registerPassword==""){
-               $("#registerPasswordNull").append("<font color='red'><p>密码不能为空</p></font>")
+                $("#registerPasswordNull").append("<font color='red'><p>密码不能为空</p></font>")
                 checkNumber=1;
 
             }
@@ -144,9 +145,12 @@
                     <label for="registerPasswordCheck">请再次输入密码</label><input type="password" class="form-control" id="registerPasswordCheck" style="width: 20%"/><div id="passwordCheckResult"></div>
                 </div>
                 <div class="form-group">
+                    <label for="registerPasswordCheck">用户类型：</label><select id="userType"><option>学生</option><option>宿舍管理员</option><option>维修员</option></select>
+                </div>
+                <div class="form-group">
                     <label for="checkCode">请输入激活码</label><input type="password" class="form-control" id="checkCode" style="width: 20%"/>
                 </div>
-                 <button type="submit" class="btn btn-default" onclick="registerSubmit()">提交</button>
+                <button type="submit" class="btn btn-default" onclick="registerSubmit()">提交</button>
                 <button onclick="closeWindow()" class="btn btn-default">关闭</button>
             </form>
         </div>

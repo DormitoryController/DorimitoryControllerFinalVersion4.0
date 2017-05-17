@@ -22,7 +22,7 @@
 </style>
 <script>
     var index=1;
-    $(document).ready(function repositoryReducing() {
+    $(document).ready(function repositoryAdding() {
         $.ajax({
             type:'post',
             url:'/MainController/repositoryItem',
@@ -34,16 +34,22 @@
                 for (var i in ob) {
                     txt1=txt1+"<option value='"+ob[i].name+"'>"+ob[i].name+"</option>"
                 }
-                var txt2="<tr><td>"+index+"</td>" +
-                    "<td><select style='background-color: #d9edf7'> "+txt1+
-                    "<td>01/04/2012 </td>" +
-                    "<td><input type='number'style='background-color: #d9edf7'></td>" +
-                    "<td onclick='addColumn()'> <a>+</a> </td>"
-                "</tr>";
-                $("#table2").append(txt2);
+                var txt2="<tr id='reducetr"+index+"'><td id='mydiv"+index+"'>"+index+"</td>" +
+                    "<td ><select style='background-color: #d9edf7'id='reduceitem"+index+"'> "+txt1+
+                    "<td><input type='number'style='background-color: #d9edf7'id='reducenum"+index+"'></td>" +
+                    "<td onclick='addColumn()'> <a>+</a> </td>"+
+                    "<td onclick='deleteColumn("+index+")'> <a>-</a> </td>"+
+                    "</tr>";
+                $("#repReduceTable").append(txt2);
                 index++;
             },
         },JSON)
+
+//        $("#itemBtn").on("click",function(){//upnew为这个button控件ID
+//                var txt=$("#mydiv"+1+"").text();
+//                alert(txt)
+//            }
+//        );
     })
     function addColumn() {
         $.ajax({
@@ -55,33 +61,71 @@
                 var result = eval("(" + data + ")");
                 var ob = result.itemlist;
                 for (var i in ob) {
-                   txt1=txt1+"<option value='"+ob[i].name+"'>"+ob[i].name+"</option>"
+                    txt1=txt1+"<option value='"+ob[i].name+"'>"+ob[i].name+"</option>"
                 }
-                var txt2="<tr><td>"+index+"</td>" +
-                    "<td><select style='background-color: #d9edf7'> "+txt1+
-                    "<td>01/04/2012 </td>" +
-                    "<td><input type='number'style='background-color: #d9edf7'></td>" +
-                    "<td onclick='addColumn()'> <a>+</a> </td>"
-                "</tr>";
-                $("#table2").append(txt2);
+                var txt2="<tr id='reducetr"+index+"'><td id='mydiv"+index+"'>"+index+"</td>" +
+                    "<td ><select style='background-color: #d9edf7'id='reduceitem"+index+"'> "+txt1+
+                    "<td><input type='number'style='background-color: #d9edf7'id='reducenum"+index+"'></td>" +
+                    "<td onclick='addColumn()'> <a>+</a> </td>"+
+                    "<td onclick='deleteColumn("+index+")'> <a>-</a> </td>"+
+                    "</tr>";
+                $("#repReduceTable").append(txt2);
                 index++;
             },
         },JSON)
     }
-    function ItemSubmit() {
-        $.ajax({
-            type:'post',
-            url:'/MainController/itemSubmit',
-            data:{index:0},
-            success: function (data) {
-               alert("提交成功")
-            },
-            error:function () {
-                alter("服务器异常，提交失败")
+    //    function ItemSubmit() {
+    //        $.ajax({
+    //            type:'post',
+    //            url:'/MainController/itemSubmit',
+    //            data:{index:0},
+    //            success: function (data) {
+    //
+    //                var txt=$("#mydiv"+1+"").val();
+    //                var txt1=$("#price"+1+"").val();
+    //                var txt2=$("#item"+1+"").val();
+    //                alert(txt2)
+    //            },
+    //            error:function () {
+    //                alter("服务器异常，提交失败")
+    //            }
+    //
+    //        },JSON)
+    //
+    //    }
+
+    $("#reduceItemBtn").on("click",function(){//upnew为这个button控件ID
+            var numlist=[];
+            var itemlist=[];
+            var length=$("#repReduceTable tr").length+1;
+            var addCheck=0;
+            for( var i=1;i <length;i++) {
+                var txt1 = $("#reduceitem" + i + "").val();
+                var txt3 = $("#reducenum" + i + "").val();
+                if ( txt3 != "") {
+                    itemlist.push(txt1)
+                    numlist.push(txt3)
+                }
+                else {
+                    alert("请输入价格或数量")
+                    addCheck=1;
+                    break
+                }
             }
-
-        },JSON)
-
+            if(addCheck==0) {
+                $.ajax({
+                    type: 'post',
+                    url: '/MainController/reduceItem',
+                    data: {itemlist: itemlist, numlist: numlist},
+                    success: function (data) {
+                        alert("成功")
+                    },
+                }, JSON)
+            }
+        }
+    );
+    function deleteColumn(number) {
+        $("#reducetr"+number+"").empty();
     }
 </script>
 <table class="table"  >
@@ -94,24 +138,23 @@
             产品
         </th>
         <th>
-            交付时间
-        </th>
-        <th>
             数量
         </th>
         <th>
 
         </th>
+        <th>
+        </th>
     </tr>
     </thead>
-    <tbody   id="table2">
+    <tbody   id="repReduceTable">
 
 
     </tbody>
     <tfoot>
     <tr class="info">
         <td>
-            <button type="submit"name="submit" style="background-color: #d9edf7" onclick="ItemSubmit()">提交修改</button>
+            <button  style="background-color: #d9edf7"id="reduceItemBtn" >提交</button>
         </td>
     </tr>
     </tfoot>

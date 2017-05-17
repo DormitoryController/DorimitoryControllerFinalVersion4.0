@@ -36,7 +36,7 @@
            var result = eval("(" + data + ")");
            var ob = result.itemlist;
            for (var i in ob) {
-               var txt = "<tr><th>" + ob[i].id+"</th><th>" + ob[i].name+"</th><th>2014</th><th>"+ob[i].repertory+ "</th></tr>"
+               var txt = "<tr><th>" + ob[i].id+"</th><th>" + ob[i].name+"</th><th>"+ob[i].price+"</th><th>"+ob[i].repertory+ "</th></tr>"
                $("#tbody").append(txt);
            }
        },
@@ -56,7 +56,7 @@
                 if(ob[0]!=null) {
                     $("#tbody").empty();
                     for (var i in ob) {
-                        var txt = "<tr><th>" + ob[i].id + "</th><th>" + ob[i].name + "</th><th>2014</th><th>" + ob[i].repertory + "</th></tr>"
+                        var txt = "<tr><th>" + ob[i].id + "</th><th>" + ob[i].name + "</th><th>"+ob[i].price+"</th><th>" + ob[i].repertory + "</th></tr>"
                         $("#tbody").append(txt);
                     }
                     if(index>1){
@@ -111,7 +111,7 @@
                    var ob = result.itemlist;
                    if(ob[0]!=null) {
                        for (var i in ob) {
-                           var txt = "<tr><th>" + ob[i].id + "</th><th>" + ob[i].name + "</th><th>2014</th><th>" + ob[i].repertory + "</th></tr>"
+                           var txt = "<tr><th>" + ob[i].id + "</th><th>" + ob[i].name + "</th><th>"+ob[i].price+"</th><th>" + ob[i].repertory + "</th></tr>"
                            $("#tbody").append(txt);
                        }
                        if(index>1){
@@ -166,7 +166,7 @@
                 if (ob[0]!=null) {
                     $("#tbody").empty();
                 for (var i = 0; i < 5; i++) {
-                    var txt = "<tr><th>" + ob[i].id + "</th><th>" + ob[i].name + "</th><th>2014</th><th>" + ob[i].repertory + "</th></tr>"
+                    var txt = "<tr><th>" + ob[i].id + "</th><th>" + ob[i].name + "</th><th>"+ob[i].price+"</th><th>" + ob[i].repertory + "</th></tr>"
                     $("#tbody").append(txt);
                 }
                     if(index>1){
@@ -206,18 +206,6 @@
                 return false
             }
         }, JSON)
-//        if(index>2){
-//            $("#tfoot").empty();
-//            var txt2="<li><a href='#' onclick='prev()'>上一页</a></li>"+
-//                "<li><a href='#' onclick='load("+(index-2)+")'>"+(index-1)+"</a></li>"+
-//                "<li><a href='#' onclick='load("+(index-1)+")'>"+index+"</a></li>"+
-//                "<li><a href='#' onclick='load("+(index)+")'>"+(index+1)+"</a></li>"+
-//                "<li><a href='#' onclick='load("+(index+1)+")'>"+(index+2)+"</a></li>"+
-//                "<li><a href='#' onclick='load("+(index+2)+")'>"+(index+3)+"</a></li>"+
-//                "<li><a href='#' onclick='next()'>下一页</a></li>"
-//
-//            $("#tfoot").append(txt2);
-//        }
     }
 </script>
 <div class="container">
@@ -233,10 +221,10 @@
                         产品
                     </th>
                     <th>
-                        交付时间
+                        价格
                     </th>
                     <th>
-                        状态
+                        库存
                     </th>
                 </tr>
                 </thead>

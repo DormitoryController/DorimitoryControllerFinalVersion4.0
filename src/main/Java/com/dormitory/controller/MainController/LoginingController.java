@@ -1,7 +1,24 @@
 package com.dormitory.controller.MainController;
 
+import com.dormitory.Dao.CheckcodeMapper;
+import com.dormitory.Dao.RepairerMapper;
+import com.dormitory.Dao.StudentMapper;
+import com.dormitory.Dao.SupervisorMapper;
+import com.dormitory.model.po.Checkcode;
+import com.dormitory.model.po.Repairer;
+import com.dormitory.model.po.Student;
+import com.dormitory.model.po.Supervisor;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by 赵嗣瑜 on 2017/5/11.
@@ -9,20 +26,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/LoginingController")
 @Controller
 public class LoginingController {
-    /*String username="王力";
-    String password="123";
+    @Autowired
+    private StudentMapper studentMapper;
+    @Autowired
+    private RepairerMapper repairerMapper;
+    @Autowired
+    private SupervisorMapper supervisorMapper;
+    @Autowired
+    private CheckcodeMapper checkcodeMapper;
     @RequestMapping(value = "/")
-    public String Logining(){
-         return "MainView/logining";
+    public String Logining(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return "MainView/logining";
     }
     @RequestMapping(value = "/checkIn")
-    public void CheckIn(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void CheckIn(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception {
+        String username=request.getParameter("username");
+        String password=request.getParameter("password");
         JSONObject jsonObject = new JSONObject();
-        if(username.equals(request.getParameter("username"))&&password.equals(request.getParameter("password"))){
-            HttpSession session=request.getSession();
+        if(!password.equals("")&&password.equals(studentMapper.selectStuByUsername(username).getPassword())){
+            jsonObject.put("loginCheck","true");
+            jsonObject.put("userType","学生");
             session.setAttribute("username",username);
             session.setAttribute("password",password);
+        }
+        if(!password.equals("")&&password.equals(repairerMapper.selectRepByUsername(username).getPassword())){
             jsonObject.put("loginCheck","true");
+            jsonObject.put("userType","维修员");
+            session.setAttribute("username",username);
+            session.setAttribute("password",password);
+            repairerMapper.updateReq(username,"上班");
+        }
+        if(!password.equals("")&&password.equals(supervisorMapper.selectSvByUsername(username).getPassword())){
+            jsonObject.put("loginCheck","true");
+            jsonObject.put("userType","宿舍管理员");
+            session.setAttribute("username",username);
+            session.setAttribute("password",password);
         }
         else {
             jsonObject.put("loginCheck","false");
@@ -40,8 +78,9 @@ public class LoginingController {
     }
     @RequestMapping(value = "/usernameCheck")
     public void usernameCheck(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String username=request.getParameter("username");
         JSONObject jsonObject = new JSONObject();
-        if(username.equals(request.getParameter("username"))){
+        if(studentMapper.selectStuByUsername(username)==null&&supervisorMapper.selectSvByUsername(username)==null&&repairerMapper.selectRepByUsername(username)==null){
             jsonObject.put("usernameCheck","true");
         }
         else {
@@ -56,16 +95,53 @@ public class LoginingController {
     @RequestMapping(value = "/checkRegister")
     public void registerCheck(HttpServletRequest request, HttpServletResponse response) throws Exception {
         JSONObject jsonObject = new JSONObject();
-//        String registerPassword=request.getParameter("registerPassword");
-//        String registerUsername=request.getParameter("registerUsername");
+        String registerPassword=request.getParameter("registerPassword");
+        String registerUsername=request.getParameter("registerUsername");
         String checkCode=request.getParameter("checkCode");
-        System.out.println("come here");
-        if(checkCode.equals("123")){
-            jsonObject.put("registerCheck","true");
+        String userType=request.getParameter("userType");
+        String registerCheck="false";
+        List<Checkcode> checkcodeList=checkcodeMapper.selectCheckcodeByStateAndUserType(userType);
+        for(Checkcode getcheckcode:checkcodeList){
+            if(checkCode.equals(getcheckcode.getCheckcode())){
+                int id=getcheckcode.getId();
+                checkcodeMapper.updateCheckcodeState(id,"1");
+                if(userType.equals("学生")) {
+                    registerCheck = "true";
+                    Student student = new Student();
+                    student.setUsername(registerUsername);
+                    student.setPassword(registerPassword);
+                    studentMapper.insertStudent(student);
+                    Student reStudent=studentMapper.selectStuByUsername(registerUsername);
+                    int unitId=reStudent.getId();
+                    checkcodeMapper.updateCheckcode(checkCode,unitId);
+                    break;
+                }
+                if(userType.equals("宿舍管理员")) {
+                    registerCheck = "true";
+                    Supervisor supervisor=new Supervisor();
+                    supervisor.setUsername(registerUsername);
+                    supervisor.setPassword(registerPassword);
+                    supervisorMapper.insertSupervisor(supervisor);
+                    Supervisor reSupervisor=supervisorMapper.selectSvByUsername(registerUsername);
+                    int unitId=reSupervisor.getId();
+                    checkcodeMapper.updateCheckcode(checkCode,unitId);
+                    break;
+                }
+                if(userType.equals("维修员")) {
+                    registerCheck = "true";
+                    Repairer repairer=new Repairer();
+                    repairer.setUsername(registerUsername);
+                    repairer.setPassword(registerPassword);
+                    repairerMapper.insertReq(repairer);
+                    Repairer reRepaier=repairerMapper.selectRepByUsername(registerUsername);
+                    int unitId=reRepaier.getId();
+                    checkcodeMapper.updateCheckcode(checkCode,unitId);
+                    break;
+                }
+
+            }
         }
-        else {
-            jsonObject.put("registerCheck","false");
-        }
+        jsonObject.put("registerCheck",registerCheck);
         response.setHeader("content-type", "text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         out.print(jsonObject.toString());
@@ -77,16 +153,49 @@ public class LoginingController {
         return "MainView/codeChange";
     }
     @RequestMapping(value = "/codeChangeSubmit")
-    public void codeChangdeSubmit(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        JSONObject jsonObject = new JSONObject();
-
+    public void codeChangeSubmit(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String registerPassword=request.getParameter("registerPassword");
+        String registerUsername=request.getParameter("registerUsername");
         String checkCode=request.getParameter("checkCode");
-        if(checkCode.equals("123")){
-            jsonObject.put("registerCheck","true");
+        JSONObject jsonObject = new JSONObject();
+        String registerCheck="false";
+        List<Checkcode> checkcodeList=checkcodeMapper.selectAllCheckcode();
+        for (Checkcode getCheckCode:checkcodeList){
+           if(checkCode.equals(getCheckCode.getCheckcode())){
+               int id=getCheckCode.getUser_id();
+               String userType=getCheckCode.getUser_type();
+               String user_state=getCheckCode.getUse_state();
+               if(user_state.equals("1")){
+                   if(userType.equals("学生")){
+                       Student student=studentMapper.selectStuById(id);
+                       if(registerUsername.equals(student.getUsername())){
+                           student.setPassword(registerPassword);
+                           studentMapper.updateStudent(student);
+                           registerCheck="true";
+                       }
+                   }
+                   if(userType.equals("宿舍管理员")){
+                       Supervisor supervisor=supervisorMapper.selectSvById(id);
+                       if(registerUsername.equals(supervisor.getUsername())){
+                           supervisor.setPassword(registerPassword);
+                           supervisorMapper.updateSupersivor(supervisor);
+                           registerCheck="true";
+                       }
+
+                   }
+                   if(userType.equals("维修员")){
+                       Repairer repairer=repairerMapper.selectRepById(id);
+                       if(registerUsername.equals(repairer.getUsername())){
+                           repairer.setPassword(registerPassword);
+                           repairerMapper.updateReqInfo(repairer);
+                           registerCheck="true";
+                       }
+                   }
+               }
+
+           }
         }
-        else {
-            jsonObject.put("registerCheck","false");
-        }
+        jsonObject.put("registerCheck",registerCheck);
         response.setHeader("content-type", "text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         out.print(jsonObject.toString());
@@ -95,5 +204,4 @@ public class LoginingController {
 
 
     }
-    */
 }

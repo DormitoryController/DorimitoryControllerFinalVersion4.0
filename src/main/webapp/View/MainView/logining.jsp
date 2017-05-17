@@ -55,8 +55,17 @@
                 success: function (data) {
                     var result = eval("(" + data + ")");
                     var status=result.loginCheck;
+                    var userType=result.userType;
                     if(status=="true"){
-                        location.href="/MainController/"
+                        if(userType=="学生"){
+                            location.href="/MainController/"
+                        }
+                        if(userType=="宿舍管理员"){
+                            location.href="/MainController/"
+                        }
+                        if(userType=="维修员"){
+                            location.href="/MainController/"
+                        }
                     }
                     else if(status=="false"){
                         alert("账号或密码错误")
