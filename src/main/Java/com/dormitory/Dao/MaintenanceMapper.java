@@ -2,6 +2,7 @@ package com.dormitory.Dao;
 
 
 import com.dormitory.model.po.Maintenance;
+import com.dormitory.model.vo.MaintenanceCustom;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface MaintenanceMapper {
     Maintenance selectMaintenanceById(int id);  //根据id号查询维修表
     List<Maintenance> selectMaintenanceByStu(String stu_username);  //根据学生名查询维修表
     List<Maintenance> selectMaintenanceByRep(String rep_username);  //根据维修员查询维修表
-    List<Maintenance> selectMaintenanceByState(String fault_state);  //根据维修状态查询维修表
+    List<MaintenanceCustom> selectMaintenanceByState(String fault_state);  //根据维修状态查询维修表
     List<Maintenance> selectAllMaintenance();  //查询所有维修表
     void insertReform(Maintenance maintenance);  //增加报修情况
     void updateAllocate(Maintenance maintenance);  //分派维修工作（状态、维修人)
